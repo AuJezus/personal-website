@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply font-mono;
+  }
+}
+
+/* Hero section */
+@layer components {
+  @keyframes pan-image {
+    0% {
+      background-position: 36% 42%;
+      background-size: 150%;
+    }
+
+    20% {
+      background-position: 30% 35%;
+      background-size: 150%;
+    }
+
+    20.0001% {
+      /* -- View 2 -- */
+      background-position: 60% 85%;
+      background-size: 400%;
+    }
+
+    40% {
+      background-position: 49% 81%;
+      background-size: 400%;
+    }
+
+    40.0001% {
+      /* -- View 3 -- */
+      background-position: 80% 42%;
+      background-size: 200%;
+    }
+
+    60% {
+      background-position: 84% 33%;
+      background-size: 200%;
+    }
+
+    60.0001% {
+      /* -- View 4 -- */
+      background-position: 0% 0%;
+      background-size: 200%;
+    }
+
+    80% {
+      background-position: 15% 4%;
+      background-size: 200%;
+    }
+
+    80.0001% {
+      /* -- View 5 -- */
+      background-position: 80% 10%;
+      background-size: 200%;
+    }
+
+    100% {
+      background-position: 72% 14%;
+      background-size: 200%;
+    }
+  }
+
+  @keyframes pan-overlay {
+    from {
+      background-position: 0% 0%;
+    }
+
+    to {
+      background-position: 0% -100%;
+    }
+  }
+
+  .hero-img {
+    @apply absolute h-full w-full bg-center opacity-40;
+    filter: sepia(100%) hue-rotate(270deg);
+    background-image: url("hero-back.jpg");
+    background-size: 300%;
+    animation: pan-image 15s linear infinite;
+  }
+
+  .hero-overlay {
+    @apply absolute left-0 top-0 z-10 h-full w-full opacity-10;
+    background: linear-gradient(
+      theme(colors.violet.900),
+      theme(colors.violet.900) 3px,
+      transparent 3px,
+      transparent 9px
+    );
+    background-size: 100% 9px;
+    animation: pan-overlay 5s infinite linear;
+  }
+
+  .noise {
+    filter: sepia(100%) hue-rotate(270deg) url(#noise) !important;
+  }
+}
