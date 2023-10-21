@@ -6,6 +6,11 @@
   html {
     @apply font-mono;
   }
+
+  body {
+    @apply bg-neutral-900;
+    height: 400vh;
+  }
 }
 
 /* Hero section */

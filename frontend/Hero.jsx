@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import NoiseSvg from "./NoiseSvg";
-import NavBar from "./NavBar";
 
 function Hero() {
   const [isGlitching, setIsGlitching] = useState(false);
@@ -38,14 +37,13 @@ function Hero() {
           <div className={`hero-img ${isGlitching ? "noise" : ""}`}></div>
           <div className="hero-overlay"></div>
 
-          <NavBar />
-
           <div className="relative z-20 flex h-full w-full flex-col items-center justify-center ">
             <h1 className=" text-10xl font-bold uppercase text-neutral-100 opacity-90">
               AuJezus
             </h1>
             <p className="text-xl uppercase text-neutral-100 opacity-90">
-              <span className="text-violet-400">></span> fullstack web developer
+              <span className="text-violet-400">{">"}</span> fullstack web
+              developer
             </p>
           </div>
         </div>
