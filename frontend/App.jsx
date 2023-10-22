@@ -1,15 +1,13 @@
-import Hero from "./Hero";
-import NavBar from "./NavBar";
-import Section from "./Section";
+import Hero from "./pages/home/Hero";
+import NavBar from "./reusable/NavBar";
+import AboutSection from "./pages/home/about/AboutSection";
 
 function App() {
   return (
     <>
       <NavBar />
       <Hero />
-      <div>
-        <Section />
-      </div>
+      <AboutSection />
     </>
   );
 }

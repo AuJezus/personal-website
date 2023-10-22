@@ -14,7 +14,7 @@ function Hero() {
   }
 
   function scheduleNextGlitch() {
-    const randomDelay = Math.random() * 1500 + 500;
+    const randomDelay = Math.random() * 1500 + 800;
     setTimeout(() => {
       addGlitchEffect();
     }, randomDelay);

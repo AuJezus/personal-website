@@ -1,4 +1,4 @@
-function CodeElement({ children, name, type }) {
+function CodeText({ children, name, type }) {
   return (
     <div className="group">
       <span className={`${type === "heading" ? "" : "block"}`}>
@@ -28,4 +28,4 @@ function CodeElement({ children, name, type }) {
   );
 }
 
-export default CodeElement;
+export default CodeText;

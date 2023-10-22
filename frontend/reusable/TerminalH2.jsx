@@ -1,0 +1,12 @@
+function TerminalH2({ children }) {
+  return (
+    <div className="flex items-baseline gap-4">
+      <span>
+        <span className="text-violet-500">~</span> W:\Devs\AuJezus{">"}
+      </span>
+      <h2 className="text-xl text-violet-500">{children}</h2>
+    </div>
+  );
+}
+
+export default TerminalH2;
