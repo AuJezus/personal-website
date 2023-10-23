@@ -1,6 +1,6 @@
 function TerminalH2({ children }) {
   return (
-    <div className="flex items-baseline gap-4">
+    <div className="flex items-baseline gap-4 text-neutral-500">
       <span>
         <span className="text-violet-500">~</span> W:\Devs\AuJezus{">"}
       </span>

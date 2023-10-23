@@ -1,3 +1,4 @@
+import Section from "../../../reusable/Section";
 import TerminalH2 from "../../../reusable/TerminalH2";
 import AboutLevels from "./AboutLevels";
 import AboutQuote from "./AboutQuote";
@@ -35,10 +36,10 @@ function AboutSection() {
   ];
 
   return (
-    <div className="pad mx-auto mt-28 max-w-[1200px] text-neutral-500">
+    <Section>
       <TerminalH2>about-me</TerminalH2>
 
-      <h3 className="my-10 text-center text-5xl text-neutral-400">my life</h3>
+      <h3 className="my-10 text-center text-5xl text-neutral-300">my life</h3>
 
       <div className="grid grid-cols-6 grid-rows-2 divide-x divide-y divide-violet-500 border  border-violet-500">
         <div className="col-span-3 row-span-2 p-4">
@@ -51,7 +52,7 @@ function AboutSection() {
           <AboutQuote />
         </div>
       </div>
-    </div>
+    </Section>
   );
 }
 
