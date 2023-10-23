@@ -1,9 +1,11 @@
-function Skill({ color, logo, name }) {
-  const notBoxicon = ["router", "query", "redux"];
+function Skill({ color, logo, name, center }) {
+  const notBoxicon = ["router", "query", "redux", "navigation", "mysql"];
 
   return (
     <div
-      className={`${color} flex items-center justify-between gap-4 px-2 py-1`}
+      className={`${color} ${
+        center ? "col-span-full" : ""
+      } flex items-center justify-between gap-4 px-2 py-1 transition-colors`}
     >
       {notBoxicon.includes(logo) ? (
         <img className="w-[24px]" src={`${logo}.svg`} />

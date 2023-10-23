@@ -11,20 +11,24 @@ function BackendCard() {
         run securely and efficiently. My expertise guarantees a smooth and
         reliable user experience.
       </CardDescription>
+      {/* js, express, postgre, php, mysql, firebase*/}
       <SkillContainer>
-        <Skill name="html" logo="html5" color="hover:bg-orange-700" />
         <Skill
           name="javascript"
           logo="javascript"
           color="hover:bg-yellow-700"
         />
-        <Skill name="router" logo="router" color="hover:bg-red-700" />
-        <Skill name="react" logo="react" color="hover:bg-blue-700" />
-        <Skill name="css" logo="css3" color="hover:bg-sky-700" />
-        <Skill name="tailwind" logo="tailwind-css" color="hover:bg-cyan-700" />
-        <Skill name="react" logo="query" color="hover:bg-amber-700" />
+        <Skill name="node.js" logo="nodejs" color="hover:bg-green-700" />
         <Skill name="github" logo="github" color="hover:bg-neutral-700" />
-        <Skill name="redux" logo="redux" color="hover:bg-purple-700" />
+        <Skill name="postgres" logo="postgresql" color="hover:bg-indigo-700" />
+        <Skill name="php" logo="php" color="hover:bg-purple-700" />
+        <Skill name="mysql" logo="mysql" color="hover:bg-blue-700" />
+        <Skill
+          name="firebase"
+          logo="firebase"
+          color="hover:bg-amber-700"
+          center
+        />
       </SkillContainer>
     </SkillCard>
   );

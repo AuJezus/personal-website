@@ -24,7 +24,7 @@ function FrontendCard() {
         <Skill name="tailwind" logo="tailwind-css" color="hover:bg-cyan-700" />
         <Skill name="query" logo="query" color="hover:bg-amber-700" />
         <Skill name="github" logo="github" color="hover:bg-neutral-700" />
-        <Skill name="redux" logo="redux" color="hover:bg-purple-700" />
+        <Skill name="redux" logo="redux" color="hover:bg-purple-700" center />
       </SkillContainer>
     </SkillCard>
   );
