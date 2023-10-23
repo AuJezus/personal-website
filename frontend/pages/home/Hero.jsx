@@ -42,7 +42,7 @@ function Hero() {
               AuJezus
             </h1>
             <p className="text-xl uppercase text-neutral-100 opacity-90">
-              <span className="text-violet-400">{">"}</span> fullstack web
+              <span className="text-violet-400">{">"}</span> full-stack
               developer
             </p>
           </div>

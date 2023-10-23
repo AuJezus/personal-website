@@ -8,7 +8,7 @@ function Skill({ color, logo, name, center }) {
       } flex items-center justify-between gap-4 px-2 py-1 transition-colors`}
     >
       {notBoxicon.includes(logo) ? (
-        <img className="w-[24px]" src={`${logo}.svg`} />
+        <img className="w-[24px]" src={`icons/${logo}.svg`} />
       ) : (
         <box-icon name={logo} type="logo" color="#d4d4d4"></box-icon>
       )}
