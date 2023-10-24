@@ -3,6 +3,8 @@ import NavBar from "./reusable/NavBar";
 import AboutSection from "./pages/home/about/AboutSection";
 import SkillsSection from "./pages/home/skills/SkillsSection";
 import ProjectsSection from "./pages/home/projects/ProjectsSection";
+import ContactSection from "./pages/home/contact/ContactSection";
+import Footer from "./pages/home/Footer";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
+      <ContactSection />
+      <Footer />
     </>
   );
 }

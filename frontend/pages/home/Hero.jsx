@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NoiseSvg from "./NoiseSvg";
+import ConctactList from "../../reusable/ConctactList";
 
 function Hero() {
   const [isGlitching, setIsGlitching] = useState(false);
@@ -42,9 +43,14 @@ function Hero() {
               AuJezus
             </h1>
             <p className="text-xl uppercase text-neutral-100 opacity-90">
-              <span className="text-violet-400">{">"}</span> augustas vaivada //
-              full-stack developer
+              <span className="text-violet-400">{">"}</span> augustas vaivada{" "}
+              {"//"} full-stack developer
             </p>
+            <ConctactList
+              classes="absolute bottom-0 mb-12"
+              size="sm"
+              effect={false}
+            />
           </div>
         </div>
       </div>
