@@ -4,6 +4,7 @@ import Skill from "../../../reusable/Skill";
 import SkillContainer from "../../../reusable/SkillContainer";
 import Button from "../../../reusable/Button";
 import Project from "./Project";
+import SectionH3 from "../../../reusable/SectionH3";
 
 function ProjectsSection() {
   const projects = [
@@ -62,9 +63,7 @@ function ProjectsSection() {
     <Section>
       <TerminalH2>projects</TerminalH2>
 
-      <h3 className="my-10 text-center text-5xl text-neutral-300">
-        my creations
-      </h3>
+      <SectionH3>my creations</SectionH3>
 
       <div className=" flex flex-col gap-16">
         {projects.map(

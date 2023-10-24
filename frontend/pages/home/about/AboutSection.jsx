@@ -1,4 +1,5 @@
 import Section from "../../../reusable/Section";
+import SectionH3 from "../../../reusable/SectionH3";
 import TerminalH2 from "../../../reusable/TerminalH2";
 import AboutLevels from "./AboutLevels";
 import AboutQuote from "./AboutQuote";
@@ -39,7 +40,7 @@ function AboutSection() {
     <Section>
       <TerminalH2>about-me</TerminalH2>
 
-      <h3 className="my-10 text-center text-5xl text-neutral-300">my life</h3>
+      <SectionH3>my life</SectionH3>
 
       <div className="grid grid-cols-6 grid-rows-2 divide-x divide-y divide-violet-500 border  border-violet-500">
         <div className="col-span-3 row-span-2 p-4">
