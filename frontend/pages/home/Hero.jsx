@@ -42,8 +42,8 @@ function Hero() {
               AuJezus
             </h1>
             <p className="text-xl uppercase text-neutral-100 opacity-90">
-              <span className="text-violet-400">{">"}</span> full-stack
-              developer
+              <span className="text-violet-400">{">"}</span> augustas vaivada //
+              full-stack developer
             </p>
           </div>
         </div>

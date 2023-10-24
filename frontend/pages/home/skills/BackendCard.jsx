@@ -1,7 +1,7 @@
+import Skill from "../../../reusable/Skill";
+import SkillContainer from "../../../reusable/SkillContainer";
 import CardDescription from "./CardDescription";
-import Skill from "./Skill";
 import SkillCard from "./SkillCard";
-import SkillContainer from "./SkillContainer";
 
 function BackendCard() {
   return (
@@ -11,7 +11,6 @@ function BackendCard() {
         run securely and efficiently. My expertise guarantees a smooth and
         reliable user experience.
       </CardDescription>
-      {/* js, express, postgre, php, mysql, firebase*/}
       <SkillContainer>
         <Skill
           name="javascript"

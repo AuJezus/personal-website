@@ -1,7 +1,7 @@
+import Skill from "../../../reusable/Skill";
+import SkillContainer from "../../../reusable/SkillContainer";
 import CardDescription from "./CardDescription";
-import Skill from "./Skill";
 import SkillCard from "./SkillCard";
-import SkillContainer from "./SkillContainer";
 
 function MobileCard() {
   return (
