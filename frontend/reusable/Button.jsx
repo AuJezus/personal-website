@@ -9,7 +9,12 @@ function Button({ children, type = "secondary", size, link = "" }) {
 
   const completeClasses = `${baseClasses} ${types[type]}`;
 
-  if (link) return <a className={completeClasses}>{children}</a>;
+  if (link)
+    return (
+      <a className={completeClasses} href={link}>
+        {children}
+      </a>
+    );
 
   return <button className={completeClasses}>{children}</button>;
 }
