@@ -17,7 +17,14 @@ function ContactSection() {
           <Input name="email" id="email" required />
           <Input name="text" id="text" textarea required />
         </div>
-        <Button type="primary">Send a message</Button>
+        <div className="flex gap-8">
+          <Button type="primary">
+            <box-icon name="chat" color="#8b5cf6"></box-icon>Send a message
+          </Button>
+          <Button type="secondary" link="mailto:augustasv16@gmail.com">
+            <box-icon name="envelope" color="#a3a3a3"></box-icon>Send an email
+          </Button>
+        </div>
       </form>
     </Section>
   );

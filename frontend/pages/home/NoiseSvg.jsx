@@ -19,7 +19,7 @@ function NoiseSvg() {
           <feDisplacementMap
             in="SourceGraphic"
             in2="static"
-            scale="40"
+            scale="30"
           ></feDisplacementMap>
         </filter>
       </defs>
