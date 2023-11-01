@@ -33,7 +33,7 @@ function NavBar() {
       <ul
         className={`${
           isOpen ? "scale-y-100" : "scale-y-0 delay-300"
-        } flex h-full w-full origin-top flex-col justify-around bg-neutral-800 px-4 py-3 text-7xl text-neutral-100  transition-all duration-500 md:flex md:scale-y-100 md:flex-row md:justify-around md:gap-8 md:bg-transparent md:text-2xl lg:justify-end lg:text-lg`}
+        } flex h-full w-full origin-top flex-col justify-around bg-neutral-800 px-4 py-3 text-5xl text-neutral-100  transition-all duration-500 md:flex md:scale-y-100 md:flex-row md:justify-around md:gap-8 md:bg-transparent md:text-2xl lg:justify-end lg:text-lg`}
       >
         {links.map((link) => (
           <li
