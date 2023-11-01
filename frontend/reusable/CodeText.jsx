@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 function CodeText({ children, name, type }) {
+  const [reveal, setReveal] = useState(false);
+
   return (
     <div className="group">
       <span className={`${type === "heading" ? "" : "block"}`}>
@@ -12,8 +16,11 @@ function CodeText({ children, name, type }) {
         className={`${
           type === "heading"
             ? "inline text-violet-500"
-            : "ml-4 text-neutral-400"
+            : `${
+                reveal ? "line-clamp-none" : "line-clamp-3"
+              } ml-4 text-neutral-400 md:line-clamp-none`
         } `}
+        onClick={() => setReveal((r) => !r)}
       >
         {children}
       </p>

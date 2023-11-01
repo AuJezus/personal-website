@@ -42,11 +42,11 @@ function AboutSection() {
 
       <SectionH3>my life</SectionH3>
 
-      <div className="grid grid-cols-6 grid-rows-2 divide-x divide-y divide-violet-500 border  border-violet-500">
-        <div className="col-span-3 row-span-2 p-4">
+      <div className="grid grid-cols-1 divide-y divide-violet-500 border border-violet-500 md:grid-cols-6 md:grid-rows-2 md:divide-x">
+        <div className="col-span-3 p-4 md:row-span-2">
           <AboutText />
         </div>
-        <div className="col-span-3 !border-t-0 p-4">
+        <div className="col-span-3 p-4 md:!border-t-0">
           <AboutLevels levels={levels} />
         </div>
         <div className="col-span-3 p-4">

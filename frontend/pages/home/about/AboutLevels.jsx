@@ -1,10 +1,10 @@
 function AboutLevels({ levels }) {
   return (
-    <div className="flex h-full flex-col justify-between">
+    <div className="flex h-full flex-col justify-between gap-4 md:gap-0">
       {levels.map((level) => (
         <div
           key={level.name}
-          className="group grid grid-cols-[repeat(24,_1fr)] items-center gap-x-4 transition-all hover:scale-110 hover:bg-violet-950"
+          className="group grid grid-cols-[repeat(1fr,_auto,_1fr)] items-center gap-x-4 gap-y-2 transition-all hover:scale-110 hover:bg-violet-950 lg:grid-cols-[repeat(24,_1fr)]"
         >
           <span className="col-span-5 text-neutral-400">
             _{level.name}

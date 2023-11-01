@@ -33,7 +33,7 @@ function Hero() {
   return (
     <>
       <NoiseSvg />
-      <div className="mb-28 w-full bg-neutral-900">
+      <div className="mb-12 w-full bg-neutral-900 md:mb-28">
         <div className="relative h-[70vh] w-full bg-violet-800/20 md:h-screen">
           <div className={`hero-img ${isGlitching ? "noise" : ""}`}></div>
           <div className="hero-overlay"></div>
