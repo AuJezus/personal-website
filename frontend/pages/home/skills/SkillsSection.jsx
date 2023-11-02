@@ -12,7 +12,7 @@ function SkillsSection() {
 
       <SectionH3>my wizard wands</SectionH3>
 
-      <div className="flex items-start gap-10">
+      <div className="flex flex-col flex-wrap items-center justify-center gap-5 md:flex-row md:items-stretch lg:flex-nowrap lg:items-start lg:gap-10">
         <BackendCard />
         <FrontendCard />
         <MobileCard />

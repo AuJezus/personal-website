@@ -5,7 +5,7 @@ function Skill({ color, logo, name, center }) {
     <div
       className={`${color} ${
         center ? "col-span-full" : ""
-      } flex items-center justify-between gap-4 px-2 py-1 transition-colors`}
+      } flex items-center justify-between gap-2 px-2 py-1 transition-colors md:gap-4`}
     >
       {notBoxicon.includes(logo) ? (
         <img className="w-[24px]" src={`icons/${logo}.svg`} />
