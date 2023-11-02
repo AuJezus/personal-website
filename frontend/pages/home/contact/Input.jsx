@@ -1,6 +1,10 @@
 function Input({ name, id, required = false, textarea = false }) {
   return (
-    <div className={`${textarea ? "w-full" : ""} flex flex-col gap-2 text-lg`}>
+    <div
+      className={`${
+        textarea ? "w-full" : "sm:w-auto"
+      } flex w-full flex-col gap-2 text-lg`}
+    >
       <label className="text-neutral-300" htmlFor={id}>
         _{name}:
       </label>

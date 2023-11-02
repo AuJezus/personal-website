@@ -17,7 +17,7 @@ function ContactSection() {
           <Input name="email" id="email" required />
           <Input name="text" id="text" textarea required />
         </div>
-        <div className="flex gap-8">
+        <div className="flex flex-col gap-8 sm:flex-row">
           <Button type="primary">
             <box-icon name="chat" color="#8b5cf6"></box-icon>Send a message
           </Button>
