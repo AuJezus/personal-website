@@ -19,9 +19,9 @@ function Project({
       <div
         className={`${
           reverse ? "flex-row-reverse divide-x-reverse" : ""
-        } flex w-full divide-x-2 divide-violet-500 border-2 border-violet-500 transition-all hover:scale-105 hover:shadow-[0_0_15px] hover:shadow-violet-500`}
+        } flex h-full max-w-xl flex-col items-stretch divide-violet-500 border-2 border-violet-500 transition-all hover:scale-105 hover:shadow-[0_0_15px] hover:shadow-violet-500 md:max-w-full md:flex-row md:divide-x-2`}
       >
-        <div className="w-1/3 px-4 py-8">
+        <div className="px-4 py-8 md:w-1/3">
           <h4 className="mb-8 text-center text-4xl text-neutral-300">{name}</h4>
           <p className="mb-8 text-center">{description}</p>
           <div className="mb-6 flex justify-center gap-10">
@@ -54,11 +54,12 @@ function Project({
             ))}
           </SkillContainer>
         </div>
-        <div className="flex w-2/3 items-center p-4">
+        <div className="flex items-center p-4 md:w-2/3">
           <img
             onClick={() => setViewingImage(true)}
             src={image}
             alt={`Picture of ${name} project`}
+            className=""
           />
         </div>
       </div>
@@ -71,7 +72,7 @@ function Project({
             : "hidden"
         }`}
       >
-        <div className="relative w-9/12">
+        <div className="relative w-11/12 md:w-9/12">
           <img
             className=""
             onClick={() => setViewingImage(true)}

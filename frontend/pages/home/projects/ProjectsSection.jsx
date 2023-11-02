@@ -65,7 +65,7 @@ function ProjectsSection() {
 
       <SectionH3>my creations</SectionH3>
 
-      <div className=" flex flex-col gap-16">
+      <div className=" flex flex-col items-center gap-16">
         {projects.map(
           ({ name, description, webUrl, codeUrl, skills, image }, i) => (
             <Project
