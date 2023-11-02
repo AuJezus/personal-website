@@ -20,7 +20,7 @@ function Project({
       <div
         className={`${
           reverse ? "flex-row-reverse divide-x-reverse" : ""
-        } flex h-full max-w-xl flex-col items-stretch divide-violet-500 border-2 border-violet-500 transition-all hover:scale-105 hover:shadow-[0_0_15px] hover:shadow-violet-500 md:max-w-full md:flex-row md:divide-x-2`}
+        } flex h-full max-w-xl flex-col items-stretch divide-violet-500 border-2 border-violet-500 transition-all hover:shadow-[0_0_15px] hover:shadow-violet-500 sm:hover:scale-105 md:max-w-full md:flex-row md:divide-x-2`}
       >
         <div className="px-4 py-8 md:w-1/3">
           <h4 className="mb-8 text-center text-4xl text-neutral-300">{name}</h4>
