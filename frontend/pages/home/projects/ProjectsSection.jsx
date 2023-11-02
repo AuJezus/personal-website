@@ -5,6 +5,13 @@ import SkillContainer from "../../../reusable/SkillContainer";
 import Button from "../../../reusable/Button";
 import Project from "./Project";
 import SectionH3 from "../../../reusable/SectionH3";
+import {
+  BiLogoCss3,
+  BiLogoHtml5,
+  BiLogoJavascript,
+  BiLogoNodejs,
+  BiLogoReact,
+} from "react-icons/bi";
 
 function ProjectsSection() {
   const projects = [
@@ -14,11 +21,15 @@ function ProjectsSection() {
       webUrl: "https://aujezus-play.onrender.com/",
       codeUrl: "https://github.com/AuJezus/aujezus-play",
       skills: [
-        { name: "react", logo: "react", color: "hover:bg-blue-700" },
-        { name: "node.js", logo: "nodejs", color: "hover:bg-green-700" },
+        { name: "react", logo: <BiLogoReact />, color: "hover:bg-blue-700" },
+        {
+          name: "node.js",
+          logo: <BiLogoNodejs />,
+          color: "hover:bg-green-700",
+        },
         {
           name: "javascript",
-          logo: "javascript",
+          logo: <BiLogoJavascript />,
           color: "hover:bg-yellow-700",
           center: true,
         },
@@ -30,11 +41,11 @@ function ProjectsSection() {
       description: "A simple recipe app, search, create and bookmark recipes!",
       codeUrl: "https://github.com/AuJezus/forkify",
       skills: [
-        { name: "html", logo: "html5", color: "hover:bg-orange-700" },
-        { name: "css", logo: "css3", color: "hover:bg-sky-700" },
+        { name: "html", logo: <BiLogoHtml5 />, color: "hover:bg-orange-700" },
+        { name: "css", logo: <BiLogoCss3 />, color: "hover:bg-sky-700" },
         {
           name: "javascript",
-          logo: "javascript",
+          logo: <BiLogoJavascript />,
           color: "hover:bg-yellow-700",
           center: true,
         },
@@ -50,7 +61,7 @@ function ProjectsSection() {
       skills: [
         {
           name: "node.js",
-          logo: "nodejs",
+          logo: <BiLogoNodejs />,
           color: "hover:bg-green-700",
           center: true,
         },

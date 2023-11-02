@@ -1,3 +1,4 @@
+import { BiChat, BiEnvelope } from "react-icons/bi";
 import Button from "../../../reusable/Button";
 import ConctactList from "../../../reusable/ConctactList";
 import Section from "../../../reusable/Section";
@@ -19,10 +20,12 @@ function ContactSection() {
         </div>
         <div className="flex flex-col gap-8 sm:flex-row">
           <Button type="primary">
-            <box-icon name="chat" color="#8b5cf6"></box-icon>Send a message
+            <BiChat />
+            Send a message
           </Button>
           <Button type="secondary" link="mailto:augustasv16@gmail.com">
-            <box-icon name="envelope" color="#a3a3a3"></box-icon>Send an email
+            <BiEnvelope />
+            Send an email
           </Button>
         </div>
       </form>

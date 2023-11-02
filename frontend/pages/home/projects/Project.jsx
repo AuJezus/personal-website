@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../../../reusable/Button";
 import Skill from "../../../reusable/Skill";
 import SkillContainer from "../../../reusable/SkillContainer";
+import { BiLogoGithub, BiSlideshow } from "react-icons/bi";
 
 function Project({
   name,
@@ -27,17 +28,13 @@ function Project({
           <div className="mb-6 flex justify-center gap-10">
             {webUrl && (
               <Button type="primary" link={webUrl}>
-                <box-icon
-                  name="slideshow"
-                  type="logo"
-                  color="#8b5cf6"
-                ></box-icon>
+                <BiSlideshow />
                 view
               </Button>
             )}
             {codeUrl && (
               <Button link={codeUrl}>
-                <box-icon name="github" type="logo" color="#a3a3a3"></box-icon>
+                <BiLogoGithub />
                 code
               </Button>
             )}
