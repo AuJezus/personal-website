@@ -2,7 +2,7 @@ import ConctactList from "../../reusable/ConctactList";
 
 function Footer() {
   return (
-    <div className="grid grid-cols-3 place-items-center items-center border-t-2 border-violet-500 p-8">
+    <div className="grid grid-cols-3 place-items-center items-center border-t-2 border-violet-500 p-2 text-center lg:p-8">
       <span className="text-neutral-300">Made with ❤️ by AuJezus</span>
       <ConctactList />
       <span className="text-neutral-300">

@@ -11,11 +11,13 @@ import Contact from "./Contact";
 function ConctactList({ classes, size = "md" }) {
   const sizeClasses = {
     sm: { className: "text-3xl lg:text-3xl md:text-4xl text-neutral-300" },
-    md: {},
+    md: { className: "text-3xl lg:text-3xl md:text-4xl text-neutral-300" },
   };
 
   return (
-    <div className={`${classes} flex justify-center gap-10`}>
+    <div
+      className={`${classes} flex flex-wrap justify-center gap-x-10 gap-y-3`}
+    >
       <IconContext.Provider value={sizeClasses[size]}>
         <Contact href="https://twitter.com/AuJezus">
           <BiLogoTwitter />
