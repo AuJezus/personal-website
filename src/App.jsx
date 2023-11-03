@@ -7,6 +7,7 @@ import ContactSection from "./pages/home/contact/ContactSection";
 import Footer from "./pages/home/Footer";
 import { useRef } from "react";
 
+
 function App() {
 
   return (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NoiseSvg from "./NoiseSvg";
 import ConctactList from "../../reusable/ConctactList";
+import { motion } from "framer-motion"
 
 function Hero() {
   const [isGlitching, setIsGlitching] = useState(false);
@@ -39,9 +40,14 @@ function Hero() {
           <div className="hero-overlay"></div>
 
           <div className="relative z-20 flex h-full w-full flex-col items-center justify-center ">
-            <h1 className="text-7xl font-bold uppercase text-neutral-100 opacity-90 md:text-9xl lg:text-10xl">
+            <motion.h1 initial='hidden' animate='visible' variants={{
+              hidden: {opacity: 0, y:75},
+              visible:{opacity: 1, y:0}
+              }} 
+              className="text-7xl font-bold uppercase text-neutral-100 opacity-90 md:text-9xl lg:text-10xl"
+              >
               AuJezus
-            </h1>
+            </motion.h1>
             <p className="text-sm uppercase text-neutral-100 opacity-90 md:text-lg lg:text-xl">
               <span className="text-violet-400">{">"}</span> augustas vaivada{" "}
               {"//"} full-stack developer
