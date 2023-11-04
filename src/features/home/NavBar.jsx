@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
+import useScrollUp from "../../utils/useScrollUp";
 
 function NavBar() {
   const links = [
@@ -25,42 +26,12 @@ function NavBar() {
     },
   ];
   const [isOpen, setIsOpen] = useState(false);
-
-  const [show, setShow] = useState(true);
-
-  useEffect(() => {
-    const threshold = 0;
-    let lastScrollY = window.pageYOffset;
-    let ticking = false;
-
-    const updateScrollDir = () => {
-      const scrollY = window.pageYOffset;
-
-      if (Math.abs(scrollY - lastScrollY) < threshold) {
-        ticking = false;
-        return;
-      }
-      setShow(scrollY > lastScrollY ? false : true);
-      lastScrollY = scrollY > 0 ? scrollY : 0;
-      ticking = false;
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScrollDir);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll);
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [show]);
+  const isScrollUp = useScrollUp();
 
   return (
     <nav
       className={`${
-        show ? "translate-y-0" : "-translate-y-full"
+        isScrollUp ? "translate-y-0" : "-translate-y-full"
       } fixed left-0 top-0 z-30 flex h-screen w-full items-center justify-center transition-transform  md:block  md:h-auto `}
     >
       <ul
