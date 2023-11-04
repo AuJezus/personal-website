@@ -8,7 +8,7 @@ import {
   BiTagAlt,
   BiX,
 } from "react-icons/bi";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { IconContext } from "react-icons";
 import { useState } from "react";
 import { Listbox } from "@headlessui/react";
