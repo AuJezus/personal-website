@@ -5,8 +5,8 @@ import {
   BiLogoTailwindCss,
   BiMobileAlt,
 } from "react-icons/bi";
-import Skill from "../../../reusable/Skill";
-import SkillContainer from "../../../reusable/SkillContainer";
+import Skill from "../../../ui/Skill";
+import SkillContainer from "../../../ui/SkillContainer";
 import CardDescription from "./CardDescription";
 import SkillCard from "./SkillCard";
 import { SiReactquery, SiRedux } from "react-icons/si";

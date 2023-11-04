@@ -9,6 +9,9 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@blocknote/core": "^0.9.6",
+    "@blocknote/react": "^0.9.6",
+    "firebase": "^10.5.2",
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

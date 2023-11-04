@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../../../reusable/Button";
-import Skill from "../../../reusable/Skill";
-import SkillContainer from "../../../reusable/SkillContainer";
+import Button from "../../../ui/Button";
+import Skill from "../../../ui/Skill";
+import SkillContainer from "../../../ui/SkillContainer";
 import { BiLogoGithub, BiSlideshow } from "react-icons/bi";
 
 function Project({

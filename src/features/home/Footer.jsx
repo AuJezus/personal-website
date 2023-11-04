@@ -1,4 +1,4 @@
-import ConctactList from "../../reusable/ConctactList";
+import ConctactList from "../../ui/ConctactList";
 
 function Footer() {
   return (

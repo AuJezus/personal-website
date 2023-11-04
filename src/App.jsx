@@ -1,26 +1,22 @@
-import Hero from "./pages/home/Hero";
-import NavBar from "./reusable/NavBar";
-import AboutSection from "./pages/home/about/AboutSection";
-import SkillsSection from "./pages/home/skills/SkillsSection";
-import ProjectsSection from "./pages/home/projects/ProjectsSection";
-import ContactSection from "./pages/home/contact/ContactSection";
-import Footer from "./pages/home/Footer";
-import { useRef } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
+import BlogPage from "./pages/BlogPage";
+import HomePage from "./pages/HomePage";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "blog",
+    element: <BlogPage />,
+  },
+]);
 
 function App() {
-
-  return (
-    <>
-      <NavBar />
-      <Hero />
-      <AboutSection/>
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

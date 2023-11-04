@@ -1,10 +1,7 @@
-import Section from "../../../reusable/Section";
-import TerminalH2 from "../../../reusable/TerminalH2";
-import Skill from "../../../reusable/Skill";
-import SkillContainer from "../../../reusable/SkillContainer";
-import Button from "../../../reusable/Button";
+import Section from "../../../ui/Section";
+import TerminalH2 from "../../../ui/TerminalH2";
 import Project from "./Project";
-import SectionH3 from "../../../reusable/SectionH3";
+import SectionH3 from "../../../ui/SectionH3";
 import {
   BiLogoCss3,
   BiLogoHtml5,

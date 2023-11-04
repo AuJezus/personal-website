@@ -6,8 +6,8 @@ import {
   BiLogoPhp,
   BiServer,
 } from "react-icons/bi";
-import Skill from "../../../reusable/Skill";
-import SkillContainer from "../../../reusable/SkillContainer";
+import Skill from "../../../ui/Skill";
+import SkillContainer from "../../../ui/SkillContainer";
 import CardDescription from "./CardDescription";
 import SkillCard from "./SkillCard";
 import { SiPostgresql } from "react-icons/si";

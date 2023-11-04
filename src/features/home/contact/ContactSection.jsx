@@ -1,8 +1,7 @@
 import { BiChat, BiEnvelope } from "react-icons/bi";
-import Button from "../../../reusable/Button";
-import ConctactList from "../../../reusable/ConctactList";
-import Section from "../../../reusable/Section";
-import TerminalH2 from "../../../reusable/TerminalH2";
+import Button from "../../../ui/Button";
+import Section from "../../../ui/Section";
+import TerminalH2 from "../../../ui/TerminalH2";
 import Input from "./Input";
 
 function ContactSection() {
