@@ -52,7 +52,7 @@ function Blog() {
     <div className="px-2 py-6">
       <form>
         <TextareaAutosize
-          className="mb-6 w-full resize-none bg-transparent text-5xl font-bold capitalize text-neutral-300  outline-none placeholder:text-neutral-500"
+          className="mb-6 w-full resize-none bg-transparent text-5xl font-bold capitalize leading-normal text-neutral-300  outline-none placeholder:text-neutral-500"
           placeholder="Your best blog title ever..."
         ></TextareaAutosize>
 
