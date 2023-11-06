@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import { BiBell, BiSearchAlt2 } from "react-icons/bi";
 import Button from "./Button";
+import useScrollUp from "../utils/useScrollUp";
 
-function TopNav({ scrollRef }) {
+function TopNav() {
+  const isScrollUp = useScrollUp();
+
   return (
     <nav
-      className={`flex items-center justify-between gap-10 border-b-2 border-violet-500 border-opacity-20 px-12 py-2 transition-transform`}
+      className={`${
+        isScrollUp ? "" : "-translate-y-full"
+      } sticky top-0 z-10 flex items-center justify-between gap-10 border-b-2 border-violet-500 border-opacity-20 bg-neutral-900 px-12 py-2 transition-transform`}
     >
       <span className="text-4xl font-bold uppercase text-neutral-300">
         <Link to="/">aujezus</Link>

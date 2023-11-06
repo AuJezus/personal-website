@@ -5,30 +5,11 @@
 @layer base {
   html {
     @apply font-mono;
-    @apply h-full;
-  }
-
-  #root {
-    @apply h-full;
   }
 
   body {
     @apply bg-neutral-900;
     @apply text-neutral-400;
-    @apply h-full;
-  }
-}
-
-@layer utilities {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
   }
 }
 

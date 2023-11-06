@@ -1,17 +1,15 @@
-import { Outlet } from "react-router-dom";
 import TopNav from "../ui/TopNav";
 import SideNav from "../ui/SideNav";
-import { useRef } from "react";
+import Blog from "../features/blog/Blog";
 
 function BlogPage() {
-  const scrollRef = useRef();
-
   return (
-    <div className="flex h-full flex-col">
-      <TopNav scrollRef={scrollRef} />
-      <SideNav scrollRef={scrollRef}>
-        <Outlet />
-      </SideNav>
+    <div className="flex items-start">
+      <SideNav />
+      <div className="flex-grow">
+        <TopNav />
+        <Blog />
+      </div>
     </div>
   );
 }
