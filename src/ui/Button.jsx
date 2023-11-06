@@ -3,12 +3,13 @@ function Button({
   type = "secondary",
   size = "lg",
   link = "",
-  click = {},
+  click,
 }) {
   const baseClasses =
     "flex items-center gap-1 border-2 flex-shrink-0 px-2 py-1 transition-all hover:-translate-x-2 hover:-translate-y-2 hover:shadow-[0.5rem_0.5rem_0px]  active:translate-x-0 active:translate-y-0 active:shadow-none active:duration-75";
 
   const sizes = {
+    xs: "text-xs",
     sm: "text-sm sm:text-lg",
     lg: "text-lg",
   };

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-export default function useScrollUp() {
+export default function useScrollUp(ref) {
   const [isUp, setIsUp] = useState(true);
 
   useEffect(() => {
     const threshold = 0;
-    let lastScrollY = window.pageYOffset;
+    let lastScrollY = ref?.current ? ref.current.scrollTop : window.pageYOffset;
     let ticking = false;
 
     const updateScrollDir = () => {
-      const scrollY = window.pageYOffset;
+      const scrollY = ref?.current ? ref.current.scrollTop : window.pageYOffset;
 
       if (Math.abs(scrollY - lastScrollY) < threshold) {
         ticking = false;
@@ -27,10 +27,12 @@ export default function useScrollUp() {
       }
     };
 
-    window.addEventListener("scroll", onScroll);
+    ref?.current
+      ? ref.current.addEventListener("scroll", onScroll)
+      : window.addEventListener("scroll", onScroll);
 
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isUp]);
+  }, [isUp, ref]);
 
   return isUp;
 }

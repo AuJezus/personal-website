@@ -5,7 +5,7 @@ import { BiCalendarHeart, BiCategoryAlt, BiTagAlt } from "react-icons/bi";
 function BlogHeader({ blog }) {
   return (
     <div>
-      <h1 className="mb-6 text-5xl font-bold capitalize text-neutral-300 underline decoration-violet-500 md:text-7xl">
+      <h1 className="mb-10 text-5xl font-bold capitalize text-neutral-300 underline decoration-violet-500 md:text-7xl">
         {blog.title}
       </h1>
       <div className="mb-10 flex flex-col gap-4 text-3xl md:flex-row md:flex-wrap md:justify-around lg:flex-nowrap lg:justify-start lg:gap-20 lg:text-lg">

@@ -23,7 +23,7 @@ function Blog() {
   if (isPending) return <p>Loading...</p>;
 
   return (
-    <div className="mx-auto grid max-w-7xl grid-cols-[1000px_1fr] gap-6 py-6 align-top">
+    <div className="mx-auto grid h-full max-w-7xl grid-cols-[1000px_1fr] gap-6 py-6 align-top">
       <BlogHeader blog={blog} />
       <BlogProfile blog={blog} />
       <BlogContent blog={blog} />
