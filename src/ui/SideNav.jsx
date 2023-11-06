@@ -29,9 +29,9 @@ function SideNav() {
           />
         ))}
       </ul>
-      <div className="mt-auto">
+      <ul className="mt-auto">
         <CategoryItem Icon={BiIcons["BiTagAlt"]} name="tags" />
-      </div>
+      </ul>
     </nav>
   );
 }
