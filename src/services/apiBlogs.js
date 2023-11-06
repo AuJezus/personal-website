@@ -12,7 +12,6 @@ export async function getBlog(id) {
   const snapshot = await getDoc(doc(db, "blogs", id));
 
   if (snapshot.exists()) {
-    console.log(snapshot.data());
     return snapshot.data();
   } else {
     console.error("Blog does not exist");
