@@ -5,10 +5,10 @@ import { BiCalendarHeart, BiCategoryAlt, BiTagAlt } from "react-icons/bi";
 function BlogHeader({ blog }) {
   return (
     <div>
-      <h1 className="mb-10 text-5xl font-bold capitalize text-neutral-300 underline decoration-violet-500 md:text-7xl">
+      <h1 className="mb-10 text-7xl font-bold capitalize text-neutral-300 underline decoration-violet-500">
         {blog.title}
       </h1>
-      <div className="mb-10 flex flex-col gap-4 text-3xl md:flex-row md:flex-wrap md:justify-around lg:flex-nowrap lg:justify-start lg:gap-20 lg:text-lg">
+      <div className="mb-10 flex flex-wrap justify-start gap-20 text-lg">
         <IconContext.Provider value={{ className: "text-violet-500" }}>
           <div className="flex items-center gap-3">
             <BiCalendarHeart />{" "}
@@ -22,7 +22,7 @@ function BlogHeader({ blog }) {
             </span>
           </div>
 
-          <div className="flex w-full items-center justify-center gap-3 lg:w-auto">
+          <div className="flex items-center justify-center gap-3">
             <BiTagAlt />
             {blog.tags.map((tag) => (
               <span

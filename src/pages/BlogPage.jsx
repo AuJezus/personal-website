@@ -1,6 +1,6 @@
 import TopNav from "../ui/TopNav";
 import SideNav from "../ui/SideNav";
-import Blog from "../features/blog/Blog";
+import { Outlet } from "react-router-dom";
 
 function BlogPage() {
   return (
@@ -8,7 +8,7 @@ function BlogPage() {
       <SideNav />
       <div className="flex-grow">
         <TopNav />
-        <Blog />
+        <Outlet />
       </div>
     </div>
   );
