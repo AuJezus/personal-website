@@ -9,7 +9,11 @@ function BlogContent({ blog }) {
     [blog],
   );
 
-  return <BlockNoteView editor={editor} content={JSON.parse(blog.content)} />;
+  return (
+    <div className="order-last lg:order-none">
+      <BlockNoteView editor={editor} content={JSON.parse(blog.content)} />
+    </div>
+  );
 }
 
 export default BlogContent;

@@ -6,11 +6,14 @@ function BlogHeadLinks({ content }) {
   const isScrollUp = useScrollUp();
 
   return (
-    <div>
+    <div className="flex w-full flex-col items-center lg:w-auto">
+      <div className="w-full md:w-auto lg:hidden">
+        <span className="mb-2 inline-block text-lg">On this page:</span>
+      </div>
       <ul
         className={`${
           isScrollUp ? "top-20" : "top-6"
-        } sticky rounded-md border-2 border-violet-500 p-4 text-sm transition-all duration-700`}
+        } sticky w-fit rounded-md border-2 border-violet-500 p-4 text-sm transition-all duration-700 md:text-2xl lg:w-auto lg:text-sm`}
       >
         {headings.map((item) => (
           <li

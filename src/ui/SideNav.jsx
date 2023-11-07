@@ -19,7 +19,7 @@ function SideNav() {
   if (isPending) return <p>Loading...</p>;
 
   return (
-    <nav className="sticky top-0 hidden h-screen max-w-[47px] flex-col justify-between overflow-hidden border-r-2 border-violet-500 border-opacity-20 py-6 transition-all hover:max-w-[200px] lg:flex">
+    <nav className="sticky top-0 hidden h-screen min-w-[47px] max-w-[47px] flex-col justify-between overflow-hidden border-r-2 border-violet-500 border-opacity-20 py-6 transition-all hover:min-w-[150px] lg:flex">
       <ul className="flex flex-col gap-6">
         {categories.map((category) => (
           <CategoryItem
