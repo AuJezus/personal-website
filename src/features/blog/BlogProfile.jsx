@@ -11,10 +11,7 @@ function BlogProfile({ blog }) {
         <div className="hero-overlay hidden lg:block"></div>
       </div>
       <span>@AuJezus</span>
-      <ConctactList
-        size="sm"
-        classes="lg:justify-center justify-between gap-x-4"
-      />
+      <ConctactList size="sm" classes="justify-center gap-x-4" />
     </div>
   );
 }
