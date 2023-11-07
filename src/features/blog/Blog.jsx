@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import BlogContent from "./BlogContent";
 import BlogHeader from "./BlogHeader";
 import BlogProfile from "./BlogProfile";
-import BlogHeadLinks from "./BlogHeadlinks";
+import BlogHeadLinks from "./BlogHeadLinks";
 
 function Blog() {
   const { id: blogId } = useParams();
