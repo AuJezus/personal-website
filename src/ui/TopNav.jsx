@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BiBell, BiSearchAlt2 } from "react-icons/bi";
+import { BiBell, BiBookAdd, BiMenu, BiSearchAlt2 } from "react-icons/bi";
 import Button from "./Button";
 import useScrollUp from "../utils/useScrollUp";
 
@@ -10,22 +10,22 @@ function TopNav() {
     <nav
       className={`${
         isScrollUp ? "" : "-translate-y-full"
-      } sticky top-0 z-10 hidden items-center justify-between gap-10 border-b-2 border-violet-500 border-opacity-20 bg-neutral-900 px-12 py-2 transition-transform lg:flex`}
+      } sticky top-0 z-10 flex items-center justify-around border-b-2 border-violet-500 border-opacity-20 bg-neutral-900 px-2 py-2 transition-transform md:justify-between lg:gap-10 lg:px-12`}
     >
-      <span className="text-4xl font-bold uppercase text-neutral-300">
+      <span className="hidden text-4xl font-bold uppercase text-neutral-300 md:inline-block">
         <Link to="/">aujezus</Link>
       </span>
 
-      <div className="flex items-center gap-4 rounded-md bg-neutral-800 px-2 py-1">
+      <div className="flex w-32 items-center gap-4 rounded-md bg-neutral-800 px-2 py-1 sm:w-80 md:w-96">
         <BiSearchAlt2 />
         <input
           placeholder="Search"
           type="text"
-          className="w-96 bg-neutral-800 outline-none placeholder:text-neutral-500"
+          className="w-full bg-neutral-800 outline-none placeholder:text-neutral-500"
         />
       </div>
 
-      <div className="flex items-center gap-6">
+      <div className="flex w-full items-center justify-around md:w-auto md:gap-6">
         <BiBell className="text-2xl text-neutral-300" />
         <img
           src="https://randomuser.me/api/portraits/women/90.jpg"
@@ -33,7 +33,8 @@ function TopNav() {
           className="w-8 rounded-full"
         />
         <Button type="primary" size="xs">
-          + New Blog
+          <BiBookAdd className="text-xl" />
+          <span className="hidden sm:inline-block">New Blog</span>
         </Button>
       </div>
     </nav>

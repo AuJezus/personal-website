@@ -10,7 +10,6 @@ export async function getAllCategories() {
 
 export async function getCategoryWIthRef(ref) {
   const snapshot = await getDoc(ref);
-  console.log(snapshot.data());
   if (snapshot.exists()) {
     return snapshot.data();
   } else {

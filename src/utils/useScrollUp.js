@@ -4,14 +4,17 @@ export default function useScrollUp() {
   const [isUp, setIsUp] = useState(true);
 
   useEffect(() => {
-    const threshold = 0;
+    const thresholdUp = 0;
+    const thresholdDown = 0;
     let lastScrollY = window.pageYOffset;
     let ticking = false;
 
     const updateScrollDir = () => {
       const scrollY = window.pageYOffset;
 
-      if (Math.abs(scrollY - lastScrollY) < threshold) {
+      if (
+        Math.abs(scrollY - lastScrollY) < (isUp ? thresholdDown : thresholdUp)
+      ) {
         ticking = false;
         return;
       }
