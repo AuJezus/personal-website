@@ -5,6 +5,7 @@ import BlogContent from "./BlogContent";
 import BlogHeader from "./BlogHeader";
 import BlogProfile from "./BlogProfile";
 import BlogHeadLinks from "./BlogHeadLinks";
+import LoadSpinner from "../../ui/LoadSpinner";
 
 function Blog() {
   const { id: blogId } = useParams();
@@ -20,7 +21,12 @@ function Blog() {
 
   if (isError) return <p>There was an error: {error.message}</p>;
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending)
+    return (
+      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <LoadSpinner size="lg" />
+      </div>
+    );
 
   return (
     <div className="mx-auto flex max-w-7xl grid-cols-[auto_1fr] flex-col gap-6 px-2 py-6 align-top lg:grid xl:grid-cols-[1000px_1fr] 2xl:px-0">

@@ -6,7 +6,7 @@ function BlogPage() {
   return (
     <div className="flex items-start">
       <SideNav />
-      <div className="w-full flex-grow lg:w-auto">
+      <div className="relative w-full flex-grow lg:w-auto">
         <TopNav />
         <Outlet />
       </div>
