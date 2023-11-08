@@ -1,8 +1,27 @@
 import dayjs from "dayjs";
 import { IconContext } from "react-icons";
 import { BiCalendarHeart, BiCategoryAlt, BiTagAlt } from "react-icons/bi";
+import * as BiIcons from "react-icons/bi";
+import { getCategoryWIthRef } from "../../services/apiCategories";
+import { useQuery } from "@tanstack/react-query";
 
 function BlogHeader({ blog }) {
+  const {
+    isPending,
+    isError,
+    data: category,
+    error,
+  } = useQuery({
+    queryKey: ["category", blog.category.id],
+    queryFn: () => getCategoryWIthRef(blog.category),
+  });
+
+  if (isError) return <p>There was an error: {error.message}</p>;
+
+  if (isPending) return <p>Loading...</p>;
+
+  const CategoryIcon = BiIcons[category.icon];
+
   return (
     <div className="mb-4 lg:mb-0">
       <h1 className="mb-10 text-5xl font-bold capitalize text-neutral-300 underline decoration-violet-500 md:text-7xl">
@@ -16,7 +35,7 @@ function BlogHeader({ blog }) {
           </div>
 
           <div className="flex items-center gap-3">
-            <BiCategoryAlt />
+            <CategoryIcon />
             <span className="capitalize">
               {blog.category.id.replace("-", " ")}
             </span>
