@@ -1,4 +1,4 @@
-import CodeText from "../../../ui/CodeText";
+import CodeText from "../CodeText";
 
 function AboutText() {
   return (

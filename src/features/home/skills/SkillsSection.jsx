@@ -1,9 +1,9 @@
-import Section from "../../../ui/Section";
-import TerminalH2 from "../../../ui/TerminalH2";
+import Section from "../Section";
+import TerminalH2 from "../TerminalH2";
 import FrontendCard from "./FrontendCard";
 import BackendCard from "./BackendCard";
 import MobileCard from "./MobileCard";
-import SectionH3 from "../../../ui/SectionH3";
+import SectionH3 from "../SectionH3";
 
 function SkillsSection() {
   return (

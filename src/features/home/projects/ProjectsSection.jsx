@@ -1,7 +1,7 @@
-import Section from "../../../ui/Section";
-import TerminalH2 from "../../../ui/TerminalH2";
+import Section from "../Section";
+import TerminalH2 from "../TerminalH2";
 import Project from "./Project";
-import SectionH3 from "../../../ui/SectionH3";
+import SectionH3 from "../SectionH3";
 import {
   BiLogoCss3,
   BiLogoHtml5,
