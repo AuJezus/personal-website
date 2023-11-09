@@ -2,7 +2,7 @@ import getHeadings from "../../utils/getHeadings";
 import useScrollUp from "../../utils/useScrollUp";
 
 function BlogHeadLinks({ content }) {
-  const headings = getHeadings(JSON.parse(content));
+  const headings = getHeadings(content);
   const isScrollUp = useScrollUp();
 
   return (
@@ -17,7 +17,7 @@ function BlogHeadLinks({ content }) {
       >
         {headings.map((item) => (
           <li
-            key={item.id}
+            key={item.text}
             className="flex"
             style={{ marginLeft: `${item.level * 20}px` }}
           >

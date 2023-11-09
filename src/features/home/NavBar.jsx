@@ -47,7 +47,7 @@ function NavBar() {
             key={link.name}
           >
             <a href={link.url}>_{link.name}</a>
-            <div className="absolute bottom-[5px] h-[2px] w-0 bg-neutral-100 transition-all duration-300 ease-in-out group-hover:w-full "></div>
+            <div className="absolute bottom-[4px] h-[2px] w-0 bg-neutral-100 transition-all duration-300 ease-in-out group-hover:w-full "></div>
           </li>
         ))}
       </ul>
