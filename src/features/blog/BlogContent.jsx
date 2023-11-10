@@ -22,6 +22,11 @@ function BlogContent({ blog }) {
         content={JSON.parse(blog.content)}
         editable={false}
         injectCSS={false}
+        editorProps={{
+          attributes: {
+            class: "prose prose-neutral prose-lg max-w-none prose-invert",
+          },
+        }}
       >
         <FloatingMenu>This is the floating menu</FloatingMenu>
         <BubbleMenu>This is the bubble menu</BubbleMenu>

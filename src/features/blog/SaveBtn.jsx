@@ -4,7 +4,7 @@ function SaveBtn() {
   const { editor } = useCurrentEditor();
   console.log(JSON.stringify(editor.getJSON()));
 
-  return <button></button>;
+  return <button>asas</button>;
 }
 
 export default SaveBtn;
