@@ -26,7 +26,7 @@ function BlogContent({ blog }) {
         editorProps={{
           attributes: {
             class:
-              "prose prose-neutral max-w-prose md:max-w-none prose-lg prose-invert",
+              "prose max-w-prose prose-neutral md:max-w-none prose-lg prose-invert",
           },
         }}
       >

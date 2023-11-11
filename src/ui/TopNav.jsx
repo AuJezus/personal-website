@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BiBell, BiBookAdd, BiMenu, BiSearchAlt2 } from "react-icons/bi";
+import { BiBell, BiBookAdd, BiSearchAlt2 } from "react-icons/bi";
 import Button from "./Button";
 import useScrollUp from "../utils/useScrollUp";
 
