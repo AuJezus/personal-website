@@ -10,8 +10,14 @@ import Contact from "./Contact";
 
 function ConctactList({ classes, size = "md" }) {
   const sizeClasses = {
-    sm: { className: "text-3xl lg:text-3xl md:text-4xl text-neutral-300" },
-    md: { className: "text-3xl lg:text-3xl md:text-4xl text-neutral-300" },
+    sm: {
+      className:
+        "text-3xl lg:text-3xl md:text-4xl text-neutral-300 hover:text-neutral-100",
+    },
+    md: {
+      className:
+        "text-3xl lg:text-3xl md:text-4xl text-neutral-300 hover:text-neutral-100",
+    },
   };
 
   return (

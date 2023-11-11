@@ -12,16 +12,16 @@ export default {
       typography: (theme) => ({
         neutral: {
           css: {
-            "--tw-prose-invert-body": theme("colors.neutral[400]"),
-            "--tw-prose-invert-headings": theme("colors.neutral.300"),
+            "--tw-prose-invert-body": theme("colors.neutral[300]"),
+            "--tw-prose-invert-headings": theme("colors.neutral.200"),
             "--tw-prose-invert-lead": theme("colors.neutral[400]"),
             "--tw-prose-invert-links": theme("colors.white"),
-            "--tw-prose-invert-bold": theme("colors.white"),
+            "--tw-prose-invert-bold": theme("colors.violet[500]"),
             "--tw-prose-invert-counters": theme("colors.neutral[400]"),
             "--tw-prose-invert-bullets": theme("colors.neutral[600]"),
             "--tw-prose-invert-hr": theme("colors.neutral[700]"),
-            "--tw-prose-invert-quotes": theme("colors.neutral[100]"),
-            "--tw-prose-invert-quote-borders": theme("colors.neutral[700]"),
+            "--tw-prose-invert-quotes": theme("colors.neutral[200]"),
+            "--tw-prose-invert-quote-borders": theme("colors.violet[500]"),
             "--tw-prose-invert-captions": theme("colors.neutral[400]"),
             "--tw-prose-invert-kbd": theme("colors.white"),
             "--tw-prose-invert-code": theme("colors.white"),

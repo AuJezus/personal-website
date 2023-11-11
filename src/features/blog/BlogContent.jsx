@@ -2,6 +2,7 @@ import { EditorProvider, FloatingMenu, BubbleMenu } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { common, createLowlight } from "lowlight";
+import "../../styles/tokyo-night-dark.css";
 
 function BlogContent({ blog }) {
   const lowlight = createLowlight(common);
@@ -16,15 +17,16 @@ function BlogContent({ blog }) {
   ];
 
   return (
-    <div>
+    <div className="order-1 lg:order-none">
       <EditorProvider
         extensions={extensions}
         content={JSON.parse(blog.content)}
-        editable={false}
+        editable={true}
         injectCSS={false}
         editorProps={{
           attributes: {
-            class: "prose prose-neutral prose-lg max-w-none prose-invert",
+            class:
+              "prose prose-neutral max-w-prose md:max-w-none prose-lg prose-invert",
           },
         }}
       >
