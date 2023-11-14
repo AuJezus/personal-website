@@ -105,3 +105,13 @@
     filter: sepia(100%) hue-rotate(270deg) url(#noise) !important;
   }
 }
+
+/* Placeholder style */
+.tiptap h1.is-empty:nth-child(1)::before,
+.tiptap p.is-empty:nth-child(2):last-child::before {
+  content: attr(data-placeholder);
+  color: #adb5bd;
+  float: left;
+  pointer-events: none;
+  height: 0;
+}

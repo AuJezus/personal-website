@@ -6,6 +6,7 @@ import BlogHeader from "./BlogHeader";
 import BlogProfile from "./BlogProfile";
 import BlogHeadLinks from "./BlogHeadLinks";
 import LoadSpinner from "../../ui/LoadSpinner";
+import { BlogProvider } from "./BlogContext";
 
 function Blog() {
   const { id: blogId } = useParams();
@@ -30,10 +31,12 @@ function Blog() {
 
   return (
     <div className="mx-auto flex max-w-7xl grid-cols-[700px_250px] flex-col justify-center gap-6 px-2 py-6 align-top lg:grid xl:grid-cols-[850px_300px] 2xl:px-0">
-      <BlogHeader blog={blog} />
-      <BlogProfile blog={blog} />
-      <BlogContent blog={blog} />
-      <BlogHeadLinks content={blog.content} />
+      <BlogProvider initialState={blog}>
+        <BlogHeader />
+        <BlogProfile />
+        <BlogContent />
+        <BlogHeadLinks />
+      </BlogProvider>
     </div>
   );
 }

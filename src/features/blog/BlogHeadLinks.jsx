@@ -1,7 +1,9 @@
 import getHeadings from "../../utils/getHeadings";
 import useScrollUp from "../../utils/useScrollUp";
+import { useBlog } from "./BlogContext";
 
-function BlogHeadLinks({ content }) {
+function BlogHeadLinks() {
+  const { content } = useBlog();
   const headings = getHeadings(content);
   const isScrollUp = useScrollUp();
 

@@ -1,6 +1,6 @@
 import ConctactList from "../../ui/ConctactList";
 
-function BlogProfile({ blog }) {
+function BlogProfile() {
   return (
     <div className="mb-4 flex items-center justify-center gap-4 text-lg text-violet-500 md:gap-16 lg:mb-0 lg:flex-col lg:gap-4">
       <div className="relative w-12 border-2 border-violet-500 lg:w-fit">

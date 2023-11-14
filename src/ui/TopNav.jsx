@@ -10,7 +10,7 @@ function TopNav() {
     <nav
       className={`${
         isScrollUp ? "" : "-translate-y-full"
-      } sticky top-0 z-10 flex items-center justify-around border-b-2 border-violet-500 border-opacity-20 bg-neutral-900 px-2 py-2 transition-transform md:justify-between md:gap-2 lg:gap-10 lg:px-12`}
+      } sticky top-0 z-20 flex items-center justify-around border-b-2 border-violet-500 border-opacity-20 bg-neutral-900 px-2 py-2 transition-transform md:justify-between md:gap-2 lg:gap-10 lg:px-12`}
     >
       <span className="hidden text-4xl font-bold uppercase text-neutral-300 md:inline-block">
         <Link to="/">aujezus</Link>

@@ -6,7 +6,7 @@ import Blog from "./features/blog/Blog";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import BlogList from "./features/blog/BlogList";
-// import BlogEditable from "./features/blog/BlogEditable";
+import BlogEditable from "./features/blog/BlogEditable";
 
 const router = createBrowserRouter([
   {
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <BlogList /> },
       { path: ":id", element: <Blog /> },
-      // { path: "new", element: <BlogEditable /> },
-      // { path: "edit/:id", element: <BlogEditable /> },
+      { path: "new", element: <BlogEditable /> },
+      { path: "edit/:id", element: <BlogEditable /> },
     ],
   },
 ]);
