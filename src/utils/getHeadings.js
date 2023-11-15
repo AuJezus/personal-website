@@ -1,4 +1,7 @@
 export default function getHeadings(content) {
+  console.log(!content);
+  if (!content) return [];
+
   const obj = JSON.parse(content).content;
   const headers = obj.filter((block) => block.type === "heading");
   const filteredHeaders = headers.map((header) => ({

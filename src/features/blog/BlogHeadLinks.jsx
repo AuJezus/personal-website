@@ -4,6 +4,7 @@ import { useBlog } from "./BlogContext";
 
 function BlogHeadLinks() {
   const { content } = useBlog();
+  console.log(content);
   const headings = getHeadings(content);
   const isScrollUp = useScrollUp();
 

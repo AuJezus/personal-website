@@ -9,7 +9,7 @@ function BlogProvider({ children, initialState }) {
   const { editor } = useCurrentEditor();
   const [title, setTitle] = useState(initialState?.title || "");
   const [category, setCategory] = useState(initialState?.category || {});
-  const [tags, setTags] = useState(initialState?.tags || tags);
+  const [tags, setTags] = useState(initialState?.tags || []);
   const createdAt = initialState?.createdAt || serverTimestamp();
   const content = initialState?.content || "";
 

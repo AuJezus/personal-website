@@ -15,8 +15,8 @@ function BlogEditable() {
     data: blog,
     error,
   } = useQuery({
-    queryKey: ["blogs", blogId],
-    queryFn: () => getBlog(blogId),
+    queryKey: ["blogs", blogId || "new"],
+    queryFn: () => (blogId ? getBlog(blogId) : {}),
   });
 
   if (isError) return <p>There was an error: {error.message}</p>;

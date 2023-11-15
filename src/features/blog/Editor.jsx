@@ -6,9 +6,10 @@ import Document from "@tiptap/extension-document";
 import Heading from "@tiptap/extension-heading";
 import Placeholder from "@tiptap/extension-placeholder";
 import { textblockTypeInputRule } from "@tiptap/react";
+import { Node, mergeAttributes } from "@tiptap/core";
 
 const BlogDocument = Document.extend({
-  content: "title block+",
+  content: "title customNode block+",
 });
 
 const Title = Heading.extend({
@@ -52,6 +53,42 @@ const AdjustedHeading = Heading.extend({
   },
 });
 
+const CustomNode = Node.create({
+  name: "customNode",
+  group: "customNode",
+  content: "inline*",
+  draggable: false,
+  attrs: {
+    date: { default: null },
+    category: { default: null },
+    tags: { default: [] },
+  },
+  parseDOM: [
+    {
+      tag: 'div[data-type="customNode"]',
+      getAttrs: (dom) => ({
+        date: dom.getAttribute("data-date"),
+        category: dom.getAttribute("data-category"),
+        tags: dom.getAttribute("data-tags").split(","),
+      }),
+    },
+  ],
+  renderHTML({ HTMLAttributes }) {
+    return [
+      "div",
+      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
+      ["p", {}, `Date: ${HTMLAttributes.date || ""}`],
+      ["p", {}, `Category: ${HTMLAttributes.category || ""}`],
+      [
+        "p",
+        {},
+        `Tags: ${HTMLAttributes.tags ? HTMLAttributes.tags.join(", ") : ""}`,
+      ],
+    ];
+  },
+  addOptions: () => ({ HTMLAttributes: {} }),
+});
+
 function Editor({ initialContent, editable }) {
   const lowlight = createLowlight(common);
 
@@ -59,6 +96,12 @@ function Editor({ initialContent, editable }) {
     BlogDocument,
     Title,
     AdjustedHeading,
+    CustomNode.configure({
+      HTMLAttributes: {
+        class:
+          "flex not-prose flex-wrap justify-around gap-x-20 gap-y-6 text-lg lg:mb-10 lg:w-auto lg:justify-start",
+      },
+    }),
     StarterKit.configure({
       document: false,
       codeBlock: false,

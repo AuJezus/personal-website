@@ -7,7 +7,10 @@ function BlogContent({ editable = false }) {
 
   return (
     <div className="order-1 lg:order-none">
-      <Editor initialContent={JSON.parse(content)} editable={editable} />
+      <Editor
+        initialContent={content ? JSON.parse(content) : ""}
+        editable={editable}
+      />
     </div>
   );
 }
