@@ -3,9 +3,8 @@ import LoadSpinner from "../../ui/LoadSpinner";
 import { useQuery } from "@tanstack/react-query";
 import { getBlog } from "../../services/apiBlogs";
 import { BlogProvider } from "./BlogContext";
-import BlogContent from "./BlogContent";
-import BlogHeadLinks from "./BlogHeadLinks";
-import BlogHeader from "./BlogHeader";
+import BlogSaveBtn from "./BlogSaveBtn";
+import Editor from "./Editor";
 
 function BlogEditable() {
   const { id: blogId } = useParams();
@@ -29,11 +28,15 @@ function BlogEditable() {
     );
 
   return (
-    <div className="w-[700px]">
+    <div className="w-full flex flex-col items-center">
       <BlogProvider initialState={blog}>
-        <BlogHeader editable={true} />
-        <BlogContent editable={true} />
-        <BlogHeadLinks />
+        <div className="w-[700px]">
+          <Editor
+            initialContent={blog?.content ? JSON.parse(blog.content) : ""}
+            editable={true}
+          />
+        </div>
+        <BlogSaveBtn />
       </BlogProvider>
     </div>
   );

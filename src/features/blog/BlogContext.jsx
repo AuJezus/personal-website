@@ -1,30 +1,29 @@
-import { useCurrentEditor } from "@tiptap/react";
-import { serverTimestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { createContext } from "react";
 
 const BlogContext = createContext();
 
 function BlogProvider({ children, initialState }) {
-  const { editor } = useCurrentEditor();
-  const [title, setTitle] = useState(initialState?.title || "");
-  const [category, setCategory] = useState(initialState?.category || {});
+  const id = initialState.id ?? "";
+  const [editor, setEditor] = useState(null);
+  const [category, setCategory] = useState(
+    initialState?.category ?? { id: "web-dev", icon: "BiTerminal" }
+  );
   const [tags, setTags] = useState(initialState?.tags || []);
-  const createdAt = initialState?.createdAt || serverTimestamp();
-  const content = initialState?.content || "";
+  const createdAt = initialState?.createdAt || Timestamp.now();
 
   return (
     <BlogContext.Provider
       value={{
         editor,
-        title,
-        setTitle,
+        setEditor,
+        id,
         createdAt,
         category,
         setCategory,
         tags,
         setTags,
-        content,
       }}
     >
       {children}

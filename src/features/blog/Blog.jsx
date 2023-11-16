@@ -1,12 +1,10 @@
 import { useParams } from "react-router-dom";
 import { getBlog } from "../../services/apiBlogs";
 import { useQuery } from "@tanstack/react-query";
-import BlogContent from "./BlogContent";
-import BlogHeader from "./BlogHeader";
 import BlogProfile from "./BlogProfile";
-import BlogHeadLinks from "./BlogHeadLinks";
 import LoadSpinner from "../../ui/LoadSpinner";
 import { BlogProvider } from "./BlogContext";
+import Editor from "./Editor";
 
 function Blog() {
   const { id: blogId } = useParams();
@@ -32,10 +30,10 @@ function Blog() {
   return (
     <div className="mx-auto flex max-w-7xl grid-cols-[700px_250px] flex-col justify-center gap-6 px-2 py-6 align-top lg:grid xl:grid-cols-[850px_300px] 2xl:px-0">
       <BlogProvider initialState={blog}>
-        <BlogHeader />
+        <div className="order-1 lg:order-none">
+          <Editor initialContent={JSON.parse(blog.content)} />
+        </div>
         <BlogProfile />
-        <BlogContent />
-        <BlogHeadLinks />
       </BlogProvider>
     </div>
   );

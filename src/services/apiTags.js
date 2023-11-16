@@ -12,3 +12,5 @@ export async function addTag(tagId, tag) {
   const tagRef = await setDoc(collection(db, "blogs", tagId), tag);
   return tagRef;
 }
+
+export async function updateTags(tagArr) {}

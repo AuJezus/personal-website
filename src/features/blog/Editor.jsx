@@ -1,4 +1,9 @@
-import { EditorProvider, FloatingMenu, BubbleMenu } from "@tiptap/react";
+import {
+  EditorProvider,
+  FloatingMenu,
+  BubbleMenu,
+  ReactNodeViewRenderer,
+} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { common, createLowlight } from "lowlight";
@@ -7,9 +12,10 @@ import Heading from "@tiptap/extension-heading";
 import Placeholder from "@tiptap/extension-placeholder";
 import { textblockTypeInputRule } from "@tiptap/react";
 import { Node, mergeAttributes } from "@tiptap/core";
+import BlogMetadata from "./BlogMetadata";
 
 const BlogDocument = Document.extend({
-  content: "title customNode block+",
+  content: "title metadata block+",
 });
 
 const Title = Heading.extend({
@@ -53,40 +59,26 @@ const AdjustedHeading = Heading.extend({
   },
 });
 
-const CustomNode = Node.create({
-  name: "customNode",
-  group: "customNode",
-  content: "inline*",
-  draggable: false,
-  attrs: {
-    date: { default: null },
-    category: { default: null },
-    tags: { default: [] },
+const Metadata = Node.create({
+  name: "metadata",
+  group: "metadata",
+  atom: true,
+  selectable: false,
+  addNodeView() {
+    return ReactNodeViewRenderer(BlogMetadata);
   },
-  parseDOM: [
-    {
-      tag: 'div[data-type="customNode"]',
-      getAttrs: (dom) => ({
-        date: dom.getAttribute("data-date"),
-        category: dom.getAttribute("data-category"),
-        tags: dom.getAttribute("data-tags").split(","),
-      }),
-    },
-  ],
-  renderHTML({ HTMLAttributes }) {
+
+  parseHTML() {
     return [
-      "div",
-      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
-      ["p", {}, `Date: ${HTMLAttributes.date || ""}`],
-      ["p", {}, `Category: ${HTMLAttributes.category || ""}`],
-      [
-        "p",
-        {},
-        `Tags: ${HTMLAttributes.tags ? HTMLAttributes.tags.join(", ") : ""}`,
-      ],
+      {
+        tag: "react-component",
+      },
     ];
   },
-  addOptions: () => ({ HTMLAttributes: {} }),
+
+  renderHTML({ HTMLAttributes }) {
+    return ["react-component", mergeAttributes(HTMLAttributes)];
+  },
 });
 
 function Editor({ initialContent, editable }) {
@@ -96,12 +88,7 @@ function Editor({ initialContent, editable }) {
     BlogDocument,
     Title,
     AdjustedHeading,
-    CustomNode.configure({
-      HTMLAttributes: {
-        class:
-          "flex not-prose flex-wrap justify-around gap-x-20 gap-y-6 text-lg lg:mb-10 lg:w-auto lg:justify-start",
-      },
-    }),
+    Metadata,
     StarterKit.configure({
       document: false,
       codeBlock: false,

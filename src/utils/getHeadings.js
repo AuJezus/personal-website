@@ -1,5 +1,4 @@
 export default function getHeadings(content) {
-  console.log(!content);
   if (!content) return [];
 
   const obj = JSON.parse(content).content;
