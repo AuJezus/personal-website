@@ -2,11 +2,10 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   getAuth,
-  onAuthStateChanged,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import app from "./firebase";
-import { useEffect, useState } from "react";
 
 export const auth = getAuth(app);
 
@@ -45,17 +44,6 @@ export async function authenticateGoogle() {
   }
 }
 
-export function useAuth() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-
-    // Clean up the subscription to avoid memory leaks
-    return () => unsubscribe();
-  }, []);
-
-  return user;
+export async function logOut() {
+  await signOut(auth);
 }
