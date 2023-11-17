@@ -5,6 +5,7 @@ import LoadSpinner from "../../ui/LoadSpinner";
 import { useBlog } from "./BlogContext";
 import { createBlog, updateBlog } from "../../services/apiBlogs";
 import { updateTags } from "../../services/apiTags";
+import { useNavigate } from "react-router-dom";
 
 function BlogSaveBtn() {
   const { id, createdAt, category, tags, editor } = useBlog();
@@ -17,7 +18,9 @@ function BlogSaveBtn() {
     mutationFn: updateTags,
   });
 
-  function saveBlog() {
+  const navigate = useNavigate();
+
+  async function saveBlog() {
     const blog = {
       category,
       content: JSON.stringify(editor.getJSON()),
@@ -26,8 +29,11 @@ function BlogSaveBtn() {
       title: editor.view.state.doc.firstChild?.textContent,
     };
 
-    saveMutation.mutate(blog);
+    const { id: savedBlogId } = await saveMutation.mutateAsync(blog);
     tagsMutation.mutate(tags);
+    console.log("yes");
+
+    navigate(`/blog/${savedBlogId}`);
   }
 
   return (

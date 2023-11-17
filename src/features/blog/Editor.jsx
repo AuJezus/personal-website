@@ -81,7 +81,7 @@ const Metadata = Node.create({
   },
 });
 
-function Editor({ initialContent, editable }) {
+function Editor({ initialContent, editable = false }) {
   const lowlight = createLowlight(common);
 
   const extensions = [

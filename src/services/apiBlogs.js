@@ -27,12 +27,11 @@ export async function getBlog(id) {
 }
 
 export async function createBlog(blog) {
-  console.log(blog);
   const blogRef = await addDoc(collection(db, "blogs"), blog);
-  return blogRef;
+  return { id: blogRef.id, ...blog };
 }
 
 export async function updateBlog(id, blog) {
   const blogRef = await updateDoc(doc(db, "blogs", id), blog);
-  return blogRef;
+  return { id, ...blog };
 }

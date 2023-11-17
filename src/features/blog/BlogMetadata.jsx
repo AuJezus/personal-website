@@ -62,16 +62,19 @@ function BlogMetadata({ editor }) {
 
           <div className="flex items-center gap-3">
             <CategoryIcon />
-            <Listbox value={category} onChange={setCategory}>
-              <Listbox.Button>{category.id}</Listbox.Button>
-              <Listbox.Options>
-                {categories.map((c) => (
-                  <Listbox.Option key={c.id} value={c}>
-                    {c.id}
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
-            </Listbox>
+            {!editor.isEditable && category.id}
+            {editor.isEditable && (
+              <Listbox value={category} onChange={setCategory}>
+                <Listbox.Button>{category.id}</Listbox.Button>
+                <Listbox.Options>
+                  {categories.map((c) => (
+                    <Listbox.Option key={c.id} value={c}>
+                      {c.id}
+                    </Listbox.Option>
+                  ))}
+                </Listbox.Options>
+              </Listbox>
+            )}
           </div>
 
           <div className="flex items-center justify-center gap-3">
@@ -80,28 +83,31 @@ function BlogMetadata({ editor }) {
               <span
                 className="flex items-center gap-3 rounded-lg bg-neutral-800 px-2 py-1"
                 key={tag}
-                onClick={removeTag}
+                onClick={editor.isEditable ? removeTag : null}
               >
                 {tag}
-                <BiIcons.BiX className="text-red-500" />
+                {editor.isEditable && <BiIcons.BiX className="text-red-500" />}
               </span>
             ))}
-            <span className="flex items-center gap-3 rounded-lg bg-neutral-800 px-2 py-1">
-              <form>
-                <input
-                  className="bg-transparent w-24 outline-none"
-                  placeholder="New Tag"
-                  value={curTag}
-                  onChange={(e) => setCurTag(e.target.value)}
-                />
-                <button
-                  onClick={addTag}
-                  className="text-violet-500 hover:scale-125 transition-transform"
-                >
-                  +
-                </button>
-              </form>
-            </span>
+
+            {editor.isEditable && (
+              <span className="flex items-center gap-3 rounded-lg bg-neutral-800 px-2 py-1">
+                <form>
+                  <input
+                    className="bg-transparent w-24 outline-none"
+                    placeholder="New Tag"
+                    value={curTag}
+                    onChange={(e) => setCurTag(e.target.value)}
+                  />
+                  <button
+                    onClick={addTag}
+                    className="text-violet-500 hover:scale-125 transition-transform"
+                  >
+                    +
+                  </button>
+                </form>
+              </span>
+            )}
           </div>
         </IconContext.Provider>
       </div>
