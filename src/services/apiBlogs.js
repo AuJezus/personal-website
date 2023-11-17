@@ -21,8 +21,7 @@ export async function getBlog(id) {
   if (snapshot.exists()) {
     return { id: snapshot.id, ...snapshot.data() };
   } else {
-    console.error("Blog does not exist");
-    throw Error("Blog does not exist");
+    return false;
   }
 }
 

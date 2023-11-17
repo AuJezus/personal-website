@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getBlog } from "../../services/apiBlogs";
 import { useQuery } from "@tanstack/react-query";
 import BlogProfile from "./BlogProfile";
@@ -8,6 +8,7 @@ import Editor from "./Editor";
 
 function Blog() {
   const { id: blogId } = useParams();
+  const navigate = useNavigate();
   const {
     isPending,
     isError,
@@ -17,6 +18,8 @@ function Blog() {
     queryKey: ["blogs", blogId],
     queryFn: () => getBlog(blogId),
   });
+
+  if (blog === false) navigate("/notFound");
 
   if (isError) return <p>There was an error: {error.message}</p>;
 
