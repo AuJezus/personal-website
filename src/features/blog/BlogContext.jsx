@@ -1,11 +1,15 @@
 import { Timestamp } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { createContext } from "react";
+import { useAuth } from "../auth/AuthContext";
 
 const BlogContext = createContext();
 
 function BlogProvider({ children, initialState }) {
+  const user = useAuth();
+
   const id = initialState.id ?? "";
+  const userId = initialState.userId ?? user.uid;
   const [editor, setEditor] = useState(null);
   const [category, setCategory] = useState(
     initialState?.category ?? { id: "web-dev", icon: "BiTerminal" }
@@ -17,6 +21,7 @@ function BlogProvider({ children, initialState }) {
     <BlogContext.Provider
       value={{
         editor,
+        userId,
         setEditor,
         id,
         createdAt,

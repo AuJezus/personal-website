@@ -8,7 +8,7 @@ import { updateTags } from "../../services/apiTags";
 import { useNavigate } from "react-router-dom";
 
 function BlogSaveBtn() {
-  const { id, createdAt, category, tags, editor } = useBlog();
+  const { id, userId, createdAt, category, tags, editor } = useBlog();
 
   const saveMutation = useMutation({
     mutationFn: (blog) => (id ? updateBlog(id, blog) : createBlog(blog)),
@@ -27,11 +27,11 @@ function BlogSaveBtn() {
       createdAt,
       tags,
       title: editor.view.state.doc.firstChild?.textContent,
+      userId,
     };
 
     const { id: savedBlogId } = await saveMutation.mutateAsync(blog);
     tagsMutation.mutate(tags);
-    console.log("yes");
 
     navigate(`/blog/${savedBlogId}`);
   }

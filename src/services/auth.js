@@ -5,7 +5,8 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import app from "./firebase";
+import app, { db } from "./firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const auth = getAuth(app);
 
@@ -15,13 +16,26 @@ const googleProvider = new GoogleAuthProvider();
 export async function authenticateGithub() {
   try {
     const result = await signInWithPopup(auth, githubProvider);
-    console.log(result);
+
+    const user = result.user;
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    const githubURL = JSON.parse(result._tokenResponse.rawUserInfo).html_url;
+    console.log(JSON.parse(result._tokenResponse.rawUserInfo));
+
+    if (!userSnap.exists()) {
+      await setDoc(userRef, {
+        email: user.email,
+        displayName: result._tokenResponse.screenName,
+        photoURL: user.photoURL,
+        githubURL,
+      });
+    }
   } catch (err) {
     // Handle Errors here.
     const errorCode = err.code;
     const errorMessage = err.message;
-    // The email of the user's account used.
-    const email = err.customData.email;
     // The AuthCredential type that was used.
     const credential = GithubAuthProvider.credentialFromError(err);
     console.log(err);
@@ -31,7 +45,18 @@ export async function authenticateGithub() {
 export async function authenticateGoogle() {
   try {
     const result = await signInWithPopup(auth, googleProvider);
-    console.log(result);
+
+    const user = result.user;
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      await setDoc(userRef, {
+        email: user.email,
+        displayName: user.displayName.split(" ").join(""),
+        photoURL: user.photoURL,
+      });
+    }
   } catch (err) {
     // Handle Errors here.
     const errorCode = err.code;
@@ -46,4 +71,15 @@ export async function authenticateGoogle() {
 
 export async function logOut() {
   await signOut(auth);
+}
+
+export async function getUser(id) {
+  const snapshot = await getDoc(doc(db, "users", id));
+  console.log(id);
+
+  if (snapshot.exists()) {
+    return { id: snapshot.id, ...snapshot.data() };
+  } else {
+    return false;
+  }
 }
