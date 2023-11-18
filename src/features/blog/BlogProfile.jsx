@@ -6,7 +6,6 @@ import LoadSpinner from "../../ui/LoadSpinner";
 
 function BlogProfile() {
   const { userId } = useBlog();
-  console.log(userId);
 
   const {
     isPending,
@@ -26,8 +25,6 @@ function BlogProfile() {
         <LoadSpinner size="lg" />
       </div>
     );
-
-  console.log(user);
 
   return (
     <div className="mb-4 flex items-center justify-center gap-4 text-lg text-violet-500 md:gap-16 lg:mb-0 lg:flex-col lg:gap-4">

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import { BiBell, BiBookAdd, BiSearchAlt2 } from "react-icons/bi";
+import { BiBell, BiBookAdd, BiSearchAlt2, BiUserPlus } from "react-icons/bi";
 import Button from "./Button";
 import useScrollUp from "../utils/useScrollUp";
+import { useAuth } from "../features/auth/AuthContext";
 
 function TopNav() {
+  const user = useAuth();
   const isScrollUp = useScrollUp();
 
   return (
@@ -26,16 +28,26 @@ function TopNav() {
       </div>
 
       <div className="flex w-full items-center justify-around md:w-auto md:gap-4 lg:gap-6">
-        <BiBell className="text-2xl text-neutral-300" />
-        <img
-          src="https://randomuser.me/api/portraits/women/90.jpg"
-          alt="Profile picture"
-          className="w-8 rounded-full"
-        />
-        <Button type="primary" size="xs">
-          <BiBookAdd className="text-lg sm:text-xl" />
-          <span className="hidden sm:inline-block">New Blog</span>
-        </Button>
+        {!user && (
+          <Button link="/blog/auth" type="primary">
+            <BiUserPlus />
+            Log In
+          </Button>
+        )}
+        {user && (
+          <>
+            <BiBell className="text-2xl text-neutral-300" />
+            <img
+              src={user.photoURL}
+              alt="Profile picture"
+              className="w-8 rounded-full"
+            />
+            <Button link="/blog/new" type="primary" size="xs">
+              <BiBookAdd className="text-lg sm:text-xl" />
+              <span className="hidden sm:inline-block">New Blog</span>
+            </Button>
+          </>
+        )}
       </div>
     </nav>
   );

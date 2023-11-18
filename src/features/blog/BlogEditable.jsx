@@ -1,13 +1,15 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import LoadSpinner from "../../ui/LoadSpinner";
 import { useQuery } from "@tanstack/react-query";
 import { getBlog } from "../../services/apiBlogs";
 import { BlogProvider } from "./BlogContext";
 import BlogSaveBtn from "./BlogSaveBtn";
 import Editor from "./Editor";
+import { useAuth } from "../auth/AuthContext";
 
 function BlogEditable() {
   const { id: blogId } = useParams();
+  const user = useAuth();
   const navigate = useNavigate();
   const {
     isPending,
@@ -19,8 +21,6 @@ function BlogEditable() {
     queryFn: () => (blogId ? getBlog(blogId) : {}),
   });
 
-  if (blog === false) navigate("/notFound");
-
   if (isError) return <p>There was an error: {error.message}</p>;
 
   if (isPending)
@@ -29,6 +29,9 @@ function BlogEditable() {
         <LoadSpinner size="lg" />
       </div>
     );
+
+  if (blog === false || user.uid !== blog?.userId)
+    return <Navigate to="/notFound" />;
 
   return (
     <div className="w-full flex flex-col items-center">

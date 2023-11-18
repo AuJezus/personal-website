@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Button({
   children,
   type = "secondary",
@@ -22,9 +24,9 @@ function Button({
 
   if (link)
     return (
-      <a className={completeClasses} href={link}>
+      <Link className={completeClasses} to={link}>
         {children}
-      </a>
+      </Link>
     );
 
   return (

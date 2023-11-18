@@ -22,7 +22,6 @@ export async function authenticateGithub() {
     const userSnap = await getDoc(userRef);
 
     const githubURL = JSON.parse(result._tokenResponse.rawUserInfo).html_url;
-    console.log(JSON.parse(result._tokenResponse.rawUserInfo));
 
     if (!userSnap.exists()) {
       await setDoc(userRef, {
@@ -75,7 +74,6 @@ export async function logOut() {
 
 export async function getUser(id) {
   const snapshot = await getDoc(doc(db, "users", id));
-  console.log(id);
 
   if (snapshot.exists()) {
     return { id: snapshot.id, ...snapshot.data() };

@@ -3,7 +3,6 @@ import { useAuth } from "./AuthContext";
 
 function Protected({ children }) {
   const location = useLocation();
-  // console.log(location);
   const user = useAuth();
 
   if (!user)
