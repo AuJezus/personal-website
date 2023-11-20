@@ -28,7 +28,7 @@ function BlogProfile() {
 
   return (
     <div className="mb-4 flex items-center justify-center gap-4 text-lg text-violet-500 md:gap-16 lg:mb-0 lg:flex-col lg:gap-4">
-      <div className="relative w-12 border-2 border-violet-500 lg:w-24">
+      <div className="relative h-12 w-12 border-2 border-violet-500 lg:w-24">
         <img src={user.photoURL} alt="Author's profile picture" />
         <div className="hero-overlay hidden lg:block"></div>
       </div>

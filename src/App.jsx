@@ -7,9 +7,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import BlogList from "./features/blog/BlogList";
 import BlogEditable from "./features/blog/BlogEditable";
-import Auth from "./features/auth/Auth";
-import Protected from "./features/auth/Protected";
-import { AuthProvider } from "./features/auth/AuthContext";
+import Auth from "./features/user/Auth";
+import Protected from "./features/user/Protected";
+import { AuthProvider } from "./features/user/AuthContext";
+import Profile from "./features/user/Profile";
+import Settings from "./features/user/Settings";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +31,15 @@ function App() {
             <Route path="blog" element={<BlogPage />}>
               <Route path="" element={<BlogList />} />
               <Route path="auth" element={<Auth />} />
+              <Route path="user/:id" element={<Profile />} />
+              <Route
+                path="user/:id/settings"
+                element={
+                  <Protected>
+                    <Settings />
+                  </Protected>
+                }
+              />
               <Route
                 path="new"
                 element={

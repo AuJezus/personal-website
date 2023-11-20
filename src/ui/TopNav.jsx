@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BiBell, BiBookAdd, BiSearchAlt2, BiUserPlus } from "react-icons/bi";
 import Button from "./Button";
 import useScrollUp from "../utils/useScrollUp";
-import { useAuth } from "../features/auth/AuthContext";
+import { useAuth } from "../features/user/AuthContext";
 
 function TopNav() {
   const user = useAuth();
@@ -40,7 +40,7 @@ function TopNav() {
             <img
               src={user.photoURL}
               alt="Profile picture"
-              className="w-8 rounded-full"
+              className="w-8 h-8 rounded-full"
             />
             <Button link="/blog/new" type="primary" size="xs">
               <BiBookAdd className="text-lg sm:text-xl" />

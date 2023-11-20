@@ -5,7 +5,7 @@ import { getBlog } from "../../services/apiBlogs";
 import { BlogProvider } from "./BlogContext";
 import BlogSaveBtn from "./BlogSaveBtn";
 import Editor from "./Editor";
-import { useAuth } from "../auth/AuthContext";
+import { useAuth } from "../user/AuthContext";
 
 function BlogEditable() {
   const { id: blogId } = useParams();
@@ -30,7 +30,7 @@ function BlogEditable() {
       </div>
     );
 
-  if (blog === false || user.uid !== blog?.userId)
+  if (blog === false || (blog.id && user.uid !== blog?.userId))
     return <Navigate to="/notFound" />;
 
   return (

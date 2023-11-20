@@ -1,7 +1,7 @@
 import { Timestamp } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { createContext } from "react";
-import { useAuth } from "../auth/AuthContext";
+import { useAuth } from "../user/AuthContext";
 
 const BlogContext = createContext();
 
