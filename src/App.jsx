@@ -27,7 +27,15 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route index element={<HomePage />} />
+            <Route index path="/home" element={<HomePage />} />
+
+            {/* <Route element={<AppLayout />}>
+              <Route path="blogs">
+                <Route path="aujezus" element={<}/>
+              </Route>
+            </Route> */}
+
             <Route path="blog" element={<BlogPage />}>
               <Route path="" element={<BlogList />} />
               <Route path="auth" element={<Auth />} />

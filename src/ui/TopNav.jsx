@@ -3,10 +3,30 @@ import { BiBell, BiBookAdd, BiSearchAlt2, BiUserPlus } from "react-icons/bi";
 import Button from "./Button";
 import useScrollUp from "../utils/useScrollUp";
 import { useAuth } from "../features/user/AuthContext";
+import { getUser } from "../services/apiUsers";
+import { useQuery } from "@tanstack/react-query";
 
 function TopNav() {
-  const user = useAuth();
+  const { uid } = useAuth();
   const isScrollUp = useScrollUp();
+
+  const {
+    isPending,
+    isError,
+    data: user,
+    error,
+  } = useQuery({
+    queryKey: ["user", uid],
+    queryFn: () => getUser(uid),
+  });
+
+  if (isPending) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <nav
@@ -36,7 +56,7 @@ function TopNav() {
         )}
         {user && (
           <>
-            <BiBell className="text-2xl text-neutral-300" />
+            {/* <BiBell className="text-2xl text-neutral-300" /> */}
             <img
               src={user.photoURL}
               alt="Profile picture"

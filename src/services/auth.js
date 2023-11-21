@@ -28,7 +28,13 @@ export async function authenticateGithub() {
         email: user.email,
         displayName: result._tokenResponse.screenName,
         photoURL: user.photoURL,
-        githubURL,
+        contacts: {
+          github: githubURL,
+          email: {
+            address: user.email,
+            public: false,
+          },
+        },
       });
     }
   } catch (err) {
@@ -54,6 +60,12 @@ export async function authenticateGoogle() {
         email: user.email,
         displayName: user.displayName.split(" ").join(""),
         photoURL: user.photoURL,
+        contacts: {
+          email: {
+            address: user.email,
+            public: false,
+          },
+        },
       });
     }
   } catch (err) {
@@ -70,14 +82,4 @@ export async function authenticateGoogle() {
 
 export async function logOut() {
   await signOut(auth);
-}
-
-export async function getUser(id) {
-  const snapshot = await getDoc(doc(db, "users", id));
-
-  if (snapshot.exists()) {
-    return { id: snapshot.id, ...snapshot.data() };
-  } else {
-    return false;
-  }
 }

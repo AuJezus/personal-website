@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUser } from "../../services/auth";
 import ConctactList from "../../ui/ConctactList";
 import { useBlog } from "./BlogContext";
 import LoadSpinner from "../../ui/LoadSpinner";
+import { getUser } from "../../services/apiUsers";
+import UserContacts from "../../ui/UserContacts";
 
 function BlogProfile() {
   const { userId } = useBlog();
@@ -13,7 +14,7 @@ function BlogProfile() {
     data: user,
     error,
   } = useQuery({
-    queryKey: ["users", userId],
+    queryKey: ["user", userId],
     queryFn: () => getUser(userId),
   });
 
@@ -28,12 +29,14 @@ function BlogProfile() {
 
   return (
     <div className="mb-4 flex items-center justify-center gap-4 text-lg text-violet-500 md:gap-16 lg:mb-0 lg:flex-col lg:gap-4">
-      <div className="relative h-12 w-12 border-2 border-violet-500 lg:w-24">
+      <div className="relative h-12 w-12 border-2 border-violet-500 lg:w-24 lg:h-24">
         <img src={user.photoURL} alt="Author's profile picture" />
         <div className="hero-overlay hidden lg:block"></div>
       </div>
-      <span>@{user.displayName}</span>
-      <ConctactList size="sm" classes="justify-center gap-x-4" />
+      <span>
+        {user === false ? "User was Deleted" : `@${user.displayName}`}
+      </span>
+      {user !== false && <UserContacts id={userId} />}
     </div>
   );
 }

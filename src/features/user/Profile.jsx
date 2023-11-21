@@ -1,37 +1,35 @@
-import {
-  BiEnvelope,
-  BiLogoGithub,
-  BiLogoInstagram,
-  BiLogoLinkedin,
-  BiLogoTwitter,
-  BiPlus,
-  BiWrench,
-  BiX,
-} from "react-icons/bi";
-import { useAuth } from "./AuthContext";
-import { IconContext } from "react-icons";
+import { BiWrench } from "react-icons/bi";
+
 import Button from "../../ui/Button";
-import { Link } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import BlogList from "../blog/BlogList";
+import { useQuery } from "@tanstack/react-query";
+import LoadSpinner from "../../ui/LoadSpinner";
+import { getUser } from "../../services/apiUsers";
+import UserContacts from "../../ui/UserContacts";
 
 function Profile() {
-  const user = useAuth();
+  const { id } = useParams();
+  const {
+    isPending,
+    isError,
+    data: user,
+    error,
+  } = useQuery({
+    queryKey: ["user", id],
+    queryFn: () => getUser(id),
+  });
 
-  const contactIcons = {
-    github: <BiLogoGithub />,
-    instagram: <BiLogoInstagram />,
-    email: <BiEnvelope />,
-    linkedIn: <BiLogoLinkedin />,
-    twitter: <BiLogoTwitter />,
-  };
+  if (user === false) return <Navigate to="/notFound" />;
 
-  const contacts = [
-    { type: "github", url: "github.com", public: true },
-    { type: "instagram", url: "instagram.com", public: true },
-    { type: "email", url: "instagram.com", public: true },
-    { type: "linkedIn", url: "linkedin.com", public: true },
-    { type: "twitter", url: "linkedin.com", public: true },
-  ];
+  if (isError) return <p>There was an error: {error.message}</p>;
+
+  if (isPending)
+    return (
+      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <LoadSpinner size="lg" />
+      </div>
+    );
 
   return (
     <>
@@ -66,23 +64,7 @@ function Profile() {
             </div>
           </div>
         </div>
-
-        <div className="flex lg:gap-y-4 lg:gap-x-8 mb-8 lg:mb-0 lg:w-full lg:flex-wrap justify-around lg:justify-center text-4xl text-neutral-300 flex-wrap">
-          {contacts.map(
-            (c) =>
-              c.public && (
-                <Link key={c.type} to={c.url}>
-                  {contactIcons[c.type]}
-                </Link>
-              )
-          )}
-          <div className="lg:w-full lg:flex lg:justify-center">
-            <Button type="primary" size="sm">
-              <BiPlus />
-              Follow
-            </Button>
-          </div>
-        </div>
+        <UserContacts id={id} />
       </div>
 
       <div className="border-t-2 border-violet-500 opacity-20 mb-4"></div>

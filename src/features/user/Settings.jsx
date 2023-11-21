@@ -2,12 +2,11 @@ import { Navigate, useParams } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
-import { updateUser } from "../../services/apiUsers";
+import { getUser, updateUser } from "../../services/apiUsers";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Button from "../../ui/Button";
 import { BiSave } from "react-icons/bi";
 import { uploadFile } from "../../services/apiStorage";
-import { getUser } from "../../services/auth";
 import LoadSpinner from "../../ui/LoadSpinner";
 
 function Settings() {
@@ -50,7 +49,6 @@ function Settings() {
   };
 
   const modifyUpdatedUser = (location, value) => {
-    console.log(value);
     setUpdatedUser((u) => {
       if (location.startsWith("contacts")) {
         if (location === "contacts/email/public") {
@@ -61,7 +59,7 @@ function Settings() {
               ...u.contacts,
               email: {
                 ...u.contacts.email,
-                public: !u.contacts.email.public,
+                public: value,
               },
             },
           };
@@ -108,7 +106,8 @@ function Settings() {
 
     if (photo) {
       const name = uid + "." + photo.name.split(".")[1];
-      newUser.photoURL = await uploadFile(name, photo);
+      const path = uid + "/" + name;
+      newUser.photoURL = await uploadFile(path, photo);
     }
 
     saveMutation.mutate({ userId, newUser });

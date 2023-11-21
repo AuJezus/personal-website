@@ -1,12 +1,12 @@
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
-export async function uploadFile(name, file) {
+export async function uploadFile(path, file) {
   try {
     // Initialize Firebase Storage
     const storage = getStorage();
 
     // Create a storage reference with a unique name
-    const storageRef = ref(storage, name);
+    const storageRef = ref(storage, path);
 
     // Upload file to Firebase Storage
     await uploadBytes(storageRef, file);
