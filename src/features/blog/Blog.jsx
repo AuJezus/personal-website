@@ -1,27 +1,16 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { getBlog } from "../../services/apiBlogs";
-import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import { useBlog } from "../../services/apiBlogs";
 import BlogProfile from "./BlogProfile";
 import LoadSpinner from "../../ui/LoadSpinner";
-import { BlogProvider } from "./BlogContext";
 import Editor from "./Editor";
+import useScrollUp from "../../utils/useScrollUp";
 
 function Blog() {
-  const { id: blogId } = useParams();
-  const navigate = useNavigate();
-  const {
-    isPending,
-    isError,
-    data: blog,
-    error,
-  } = useQuery({
-    queryKey: ["blogs", blogId],
-    queryFn: () => getBlog(blogId),
-  });
+  const { id } = useParams();
+  const { isPending, error, blog } = useBlog(id);
+  const isScrollUp = useScrollUp();
 
-  if (blog === false) navigate("/notFound");
-
-  if (isError) return <p>There was an error: {error.message}</p>;
+  if (error) return <p>There was an error: {error.message}</p>;
 
   if (isPending)
     return (
@@ -30,14 +19,20 @@ function Blog() {
       </div>
     );
 
+  if (!blog.title) return <p>Could not find this blog :(</p>;
+
   return (
-    <div className="mx-auto flex max-w-7xl grid-cols-[700px_250px] flex-col justify-center gap-6 px-2 py-6 align-top lg:grid xl:grid-cols-[850px_300px] 2xl:px-0">
-      <BlogProvider initialState={blog}>
-        <div className="order-1 lg:order-none">
-          <Editor initialContent={JSON.parse(blog.content)} />
-        </div>
-        <BlogProfile />
-      </BlogProvider>
+    <div className="mx-auto flex max-w-7xl grid-cols-[700px_250px] flex-col justify-center items-start gap-6 px-2 py-6 align-top lg:grid xl:grid-cols-[850px_300px] 2xl:px-0">
+      <div className="order-1 lg:order-none">
+        <Editor initialContent={JSON.parse(blog.content)} />
+      </div>
+      <div
+        className={`lg:sticky w-full transition-all ${
+          isScrollUp ? "top-24" : "top-12"
+        }`}
+      >
+        <BlogProfile userId={blog.userId} />
+      </div>
     </div>
   );
 }

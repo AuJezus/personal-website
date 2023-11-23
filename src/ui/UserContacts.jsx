@@ -32,7 +32,7 @@ function UserContacts({ id }) {
   });
 
   return (
-    <div className="flex lg:gap-y-4 lg:gap-x-8 mb-8 lg:mb-0 lg:w-full lg:flex-wrap justify-around lg:justify-center text-4xl text-neutral-300 flex-wrap">
+    <div className="flex lg:gap-y-4 lg:gap-x-8 lg:mb-0 lg:w-full lg:flex-wrap justify-around lg:justify-center text-4xl text-neutral-300 flex-wrap">
       {Object.entries(user.contacts).map(([type, value]) => {
         if (type === "email") {
           if (value.public)
@@ -48,12 +48,6 @@ function UserContacts({ id }) {
             </Link>
           );
       })}
-      {/* <div className="lg:w-full lg:flex lg:justify-center">
-        <Button type="primary" size="sm">
-          <BiPlus />
-          Follow
-        </Button>
-      </div> */}
     </div>
   );
 }

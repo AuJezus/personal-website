@@ -7,7 +7,7 @@ import { getUser } from "../services/apiUsers";
 import { useQuery } from "@tanstack/react-query";
 
 function TopNav() {
-  const { uid } = useAuth();
+  const auth = useAuth();
   const isScrollUp = useScrollUp();
 
   const {
@@ -16,8 +16,8 @@ function TopNav() {
     data: user,
     error,
   } = useQuery({
-    queryKey: ["user", uid],
-    queryFn: () => getUser(uid),
+    queryKey: ["user", auth?.uid],
+    queryFn: () => getUser(auth.uid),
   });
 
   if (isPending) {

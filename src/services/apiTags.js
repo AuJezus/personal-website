@@ -1,6 +1,7 @@
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import snapToArr from "../utils/snapToArr";
+import { useQuery } from "@tanstack/react-query";
 
 export async function getAllTags() {
   const snapshot = await getDocs(collection(db, "tags"));
@@ -34,4 +35,21 @@ export async function updateTags(tagArr) {
       addedTags.push(tag);
     }
   });
+}
+
+export function useTags() {
+  const tagsQuery = useQuery({
+    queryKey: ["tags"],
+    queryFn: async () => {
+      const snapshot = await getDocs(collection(db, "tags"));
+      const tags = snapToArr(snapshot);
+      return tags;
+    },
+  });
+
+  return {
+    isPending: tagsQuery.isPending,
+    error: tagsQuery.error,
+    tags: tagsQuery.data,
+  };
 }

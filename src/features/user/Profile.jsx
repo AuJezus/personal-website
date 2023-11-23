@@ -20,6 +20,8 @@ function Profile() {
     queryFn: () => getUser(id),
   });
 
+  console.log(user);
+
   if (user === false) return <Navigate to="/notFound" />;
 
   if (isError) return <p>There was an error: {error.message}</p>;
@@ -37,7 +39,7 @@ function Profile() {
         <div className="flex lg:w-full items-center justify-around mt-8 mb-8 max-w-lg lg:mx-0 mx-auto">
           <div className="w-24 h-24 relative border-2 border-violet-500">
             <img
-              className="w-full h-full"
+              className="w-full h-full object-cover"
               src={user.photoURL}
               alt="Author's profile picture"
             />

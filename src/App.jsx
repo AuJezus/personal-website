@@ -1,25 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
-import BlogPage from "./pages/BlogPage";
 import HomePage from "./pages/HomePage";
 import Blog from "./features/blog/Blog";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import BlogList from "./features/blog/BlogList";
 import BlogEditable from "./features/blog/BlogEditable";
 import Auth from "./features/user/Auth";
 import Protected from "./features/user/Protected";
 import { AuthProvider } from "./features/user/AuthContext";
 import Profile from "./features/user/Profile";
 import Settings from "./features/user/Settings";
+import AppLayout from "./pages/AppLayout";
+import Blogs from "./pages/Blogs";
+import BlogsAujezus from "./pages/BlogsAujezus";
+import BlogsCategory from "./pages/BlogsCategory";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 60 * 1000,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 function App() {
   return (
@@ -30,42 +26,43 @@ function App() {
             <Route index element={<HomePage />} />
             <Route index path="/home" element={<HomePage />} />
 
-            {/* <Route element={<AppLayout />}>
+            <Route element={<AppLayout />}>
               <Route path="blogs">
-                <Route path="aujezus" element={<}/>
+                <Route index element={<Blogs />} />
+                <Route path="aujezus" element={<BlogsAujezus />} />
+                <Route path=":category" element={<BlogsCategory />} />
               </Route>
-            </Route> */}
 
-            <Route path="blog" element={<BlogPage />}>
-              <Route path="" element={<BlogList />} />
+              <Route path="blog">
+                <Route index element={<Navigate to="/blogs" />} />
+                <Route path=":id" element={<Blog />} />
+                <Route
+                  path=":id/edit"
+                  element={
+                    <Protected>
+                      <BlogEditable />
+                    </Protected>
+                  }
+                />
+                <Route
+                  path="new"
+                  element={
+                    <Protected>
+                      <BlogEditable />
+                    </Protected>
+                  }
+                />
+                <Route path="how" element={<div>How to to tutorial</div>} />
+              </Route>
+
               <Route path="auth" element={<Auth />} />
-              <Route path="user/:id" element={<Profile />} />
-              <Route
-                path="user/:id/settings"
-                element={
-                  <Protected>
-                    <Settings />
-                  </Protected>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <Protected>
-                    <BlogEditable />
-                  </Protected>
-                }
-              />
-              <Route
-                path="edit/:id"
-                element={
-                  <Protected>
-                    <BlogEditable />
-                  </Protected>
-                }
-              />
-              <Route path=":id" element={<Blog />} />
+
+              <Route path="user">
+                <Route path=":id" element={<Profile />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
             </Route>
+
             <Route path="error" element={<ErrorPage />} />
             <Route path="*" element={<p>Not found</p>} />
           </Routes>

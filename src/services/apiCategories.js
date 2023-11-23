@@ -1,6 +1,7 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import snapToArr from "../utils/snapToArr";
+import { useQuery } from "@tanstack/react-query";
 
 export async function getAllCategories() {
   const snapshot = await getDocs(collection(db, "categories"));
@@ -16,4 +17,21 @@ export async function getCategory(id) {
     console.error("Category does not exist");
     throw Error("Category does not exist");
   }
+}
+
+export function useCategories() {
+  const categoriesQuery = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const snapshot = await getDocs(collection(db, "categories"));
+      const categories = snapToArr(snapshot);
+      return categories;
+    },
+  });
+
+  return {
+    isPending: categoriesQuery.isPending,
+    error: categoriesQuery.error,
+    categories: categoriesQuery.data,
+  };
 }
