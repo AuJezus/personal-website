@@ -13,6 +13,7 @@ import Placeholder from "@tiptap/extension-placeholder";
 import { textblockTypeInputRule } from "@tiptap/react";
 import { Node, mergeAttributes } from "@tiptap/core";
 import BlogMetadata from "./BlogMetadata";
+import { Timestamp } from "firebase/firestore";
 
 const BlogDocument = Document.extend({
   content: "title metadata block+",
@@ -64,8 +65,23 @@ const Metadata = Node.create({
   group: "metadata",
   atom: true,
   selectable: false,
+
   addNodeView() {
     return ReactNodeViewRenderer(BlogMetadata);
+  },
+
+  addAttributes() {
+    return {
+      category: {
+        default: { id: "web-dev", icon: "BiTerminal" },
+      },
+      tags: {
+        default: [],
+      },
+      createdAt: {
+        default: Timestamp.now(),
+      },
+    };
   },
 
   parseHTML() {
@@ -81,7 +97,7 @@ const Metadata = Node.create({
   },
 });
 
-function Editor({ initialContent, editable = false }) {
+function Editor({ content, updateFn, saveFn, editable = false }) {
   const lowlight = createLowlight(common);
 
   const extensions = [
@@ -112,7 +128,8 @@ function Editor({ initialContent, editable = false }) {
   return (
     <EditorProvider
       extensions={extensions}
-      content={initialContent}
+      content={content}
+      onBlur={updateFn}
       editable={editable}
       injectCSS={false}
       editorProps={{

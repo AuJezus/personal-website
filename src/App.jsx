@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
-import Blog from "./features/blog/Blog";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import BlogEditable from "./features/blog/BlogEditable";
 import Auth from "./features/user/Auth";
 import Protected from "./features/user/Protected";
 import { AuthProvider } from "./features/user/AuthContext";
@@ -14,6 +12,9 @@ import AppLayout from "./pages/AppLayout";
 import Blogs from "./pages/Blogs";
 import BlogsAujezus from "./pages/BlogsAujezus";
 import BlogsCategory from "./pages/BlogsCategory";
+import BlogHow from "./pages/BlogHow";
+import Blog from "./pages/Blog";
+import BlogEdit from "./pages/BlogEdit";
 
 const queryClient = new QueryClient();
 
@@ -40,19 +41,15 @@ function App() {
                   path=":id/edit"
                   element={
                     <Protected>
-                      <BlogEditable />
+                      <BlogEdit />
                     </Protected>
                   }
                 />
                 <Route
                   path="new"
-                  element={
-                    <Protected>
-                      <BlogEditable />
-                    </Protected>
-                  }
+                  element={<Protected>{/* <BlogNew /> */}</Protected>}
                 />
-                <Route path="how" element={<div>How to to tutorial</div>} />
+                <Route path="how" element={<BlogHow />} />
               </Route>
 
               <Route path="auth" element={<Auth />} />

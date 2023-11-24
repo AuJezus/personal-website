@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useBlog } from "../../services/apiBlogs";
-import BlogProfile from "./BlogProfile";
-import LoadSpinner from "../../ui/LoadSpinner";
-import Editor from "./Editor";
-import useScrollUp from "../../utils/useScrollUp";
+import { useBlog } from "../services/apiBlogs";
+import BlogProfile from "../features/blog/BlogProfile";
+import LoadSpinner from "../ui/LoadSpinner";
+import Editor from "../features/blog/Editor";
+import useScrollUp from "../utils/useScrollUp";
 
 function Blog() {
   const { id } = useParams();
@@ -24,7 +24,7 @@ function Blog() {
   return (
     <div className="mx-auto flex max-w-7xl grid-cols-[700px_250px] flex-col justify-center items-start gap-6 px-2 py-6 align-top lg:grid xl:grid-cols-[850px_300px] 2xl:px-0">
       <div className="order-1 lg:order-none">
-        <Editor initialContent={JSON.parse(blog.content)} />
+        <Editor content={JSON.parse(blog.content)} />
       </div>
       <div
         className={`lg:sticky w-full transition-all ${
