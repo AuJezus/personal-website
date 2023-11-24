@@ -19,7 +19,7 @@ function Blog() {
       </div>
     );
 
-  if (!blog.title) return <p>Could not find this blog :(</p>;
+  if (!blog.userId) return <p>Could not find this blog :(</p>;
 
   return (
     <div className="mx-auto flex max-w-7xl grid-cols-[700px_250px] flex-col justify-center items-start gap-6 px-2 py-6 align-top lg:grid xl:grid-cols-[850px_300px] 2xl:px-0">

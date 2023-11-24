@@ -15,6 +15,7 @@ import BlogsCategory from "./pages/BlogsCategory";
 import BlogHow from "./pages/BlogHow";
 import Blog from "./pages/Blog";
 import BlogEdit from "./pages/BlogEdit";
+import BlogNew from "./pages/BlogNew";
 
 const queryClient = new QueryClient();
 
@@ -47,7 +48,11 @@ function App() {
                 />
                 <Route
                   path="new"
-                  element={<Protected>{/* <BlogNew /> */}</Protected>}
+                  element={
+                    <Protected>
+                      <BlogNew />
+                    </Protected>
+                  }
                 />
                 <Route path="how" element={<BlogHow />} />
               </Route>

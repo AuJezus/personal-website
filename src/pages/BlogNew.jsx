@@ -1,22 +1,21 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useBlog, useBlogMutation } from "../services/apiBlogs";
-import LoadSpinner from "../ui/LoadSpinner";
+import { useNavigate } from "react-router-dom";
 import Editor from "../features/blog/Editor";
 import BlogSaveBtn from "../features/blog/BlogSaveBtn";
 import { BiSave } from "react-icons/bi";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useBlogMutation } from "../services/apiBlogs";
+import { useAuth } from "../features/user/AuthContext";
 
-function BlogEdit() {
-  const { id } = useParams();
-  const { isPending, error, blog } = useBlog(id);
-  const blogMutation = useBlogMutation(id);
+function BlogNew() {
+  const blogMutation = useBlogMutation();
+  const { uid } = useAuth();
 
   const [editor, setEditor] = useState({});
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  async function updateBlog({ editor }) {
+  async function saveBlog() {
     const contentObj = editor.getJSON();
     const { category, tags, createdAt } = contentObj.content.find(
       (n) => n.type === "metadata"
@@ -25,42 +24,31 @@ function BlogEdit() {
       .find((n) => n.type === "title")
       .content.find((n) => n.type === "text").text;
 
-    await blogMutation.mutateAsync({
+    const blog = await blogMutation.mutateAsync({
       content: JSON.stringify(contentObj),
       category,
       createdAt,
       tags,
+      userId: uid,
       title,
     });
+
+    await queryClient.setQueryData(["blog", blog.id], blog);
+    navigate(`/blog/${blog.id}`);
   }
-
-  async function saveBlog() {
-    await updateBlog({ editor });
-    await queryClient.invalidateQueries({ queryKey: ["blog", id] });
-    navigate(`/blog/${id}`);
-  }
-
-  if (isPending) return <LoadSpinner />;
-
-  if (error) return <p>There was an error: {error}</p>;
 
   return (
     <div className="mx-auto flex max-w-7xl grid-cols-[700px_250px] flex-col justify-center items-start gap-6 px-2 py-6 align-top lg:grid xl:grid-cols-[850px_300px] 2xl:px-0">
       <div className="order-1 lg:order-none">
-        <Editor
-          content={JSON.parse(blog.content)}
-          updateFn={updateBlog}
-          saveFn={saveBlog}
-          editable={true}
-          setEditor={setEditor}
-        />
+        <Editor saveFn={saveBlog} editable={true} setEditor={setEditor} />
       </div>
+
       <BlogSaveBtn isPending={blogMutation.isPending} saveFn={saveBlog}>
         <BiSave />
-        Save Changes
+        Post Blog
       </BlogSaveBtn>
     </div>
   );
 }
 
-export default BlogEdit;
+export default BlogNew;

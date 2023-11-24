@@ -5,6 +5,7 @@ import LoadSpinner from "../../ui/LoadSpinner";
 import { BiCategory } from "react-icons/bi";
 import { useState } from "react";
 import BlogListFilter from "./BlogListFilter";
+import { Timestamp } from "firebase/firestore";
 
 function BlogList({ initialFilter = {} }) {
   const [filter, setFilter] = useState(initialFilter);
@@ -14,7 +15,7 @@ function BlogList({ initialFilter = {} }) {
     return (
       JSON.parse(content)
         .content.find((n) => n.type === "paragraph")
-        .content.find((n) => n.type === "text")
+        .content?.find((n) => n.type === "text")
         .text.split(" ")
         .slice(0, 10)
         .join(" ") + "..."
@@ -102,7 +103,12 @@ function BlogList({ initialFilter = {} }) {
                 </div>
 
                 <p className="text-violet-500 text-xs italic">
-                  {dayjs(blog.createdAt.toDate()).format("MMM DD, YYYY")}
+                  {dayjs(
+                    new Timestamp(
+                      blog.createdAt.seconds,
+                      blog.createdAt.nanoseconds
+                    ).toDate()
+                  ).format("MMM DD, YYYY")}
                 </p>
               </div>
             );

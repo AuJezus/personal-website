@@ -97,7 +97,7 @@ const Metadata = Node.create({
   },
 });
 
-function Editor({ content, updateFn, saveFn, editable = false }) {
+function Editor({ content, updateFn, saveFn, editable = false, setEditor }) {
   const lowlight = createLowlight(common);
 
   const extensions = [
@@ -129,7 +129,8 @@ function Editor({ content, updateFn, saveFn, editable = false }) {
     <EditorProvider
       extensions={extensions}
       content={content}
-      onBlur={updateFn}
+      onBlur={(e) => updateFn && updateFn(e)}
+      onTransaction={(e) => setEditor && setEditor(e.editor)}
       editable={editable}
       injectCSS={false}
       editorProps={{

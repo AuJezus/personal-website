@@ -1,54 +1,19 @@
-import { BiSave } from "react-icons/bi";
 import Button from "../../ui/Button";
-import { useMutation } from "@tanstack/react-query";
-import LoadSpinner from "../../ui/LoadSpinner";
-import { useBlog } from "./BlogContext";
-import { createBlog, updateBlog } from "../../services/apiBlogs";
-import { updateTags } from "../../services/apiTags";
-import { useNavigate } from "react-router-dom";
+import useScrollUp from "../../utils/useScrollUp";
 
-function BlogSaveBtn() {
-  const { id, userId, createdAt, category, tags, editor } = useBlog();
-
-  const saveMutation = useMutation({
-    mutationFn: (blog) => (id ? updateBlog(id, blog) : createBlog(blog)),
-  });
-
-  const tagsMutation = useMutation({
-    mutationFn: updateTags,
-  });
-
-  const navigate = useNavigate();
-
-  async function saveBlog() {
-    const blog = {
-      category,
-      content: JSON.stringify(editor.getJSON()),
-      createdAt,
-      tags,
-      title: editor.view.state.doc.firstChild?.textContent,
-      userId,
-    };
-
-    const { id: savedBlogId } = await saveMutation.mutateAsync(blog);
-    tagsMutation.mutate(tags);
-
-    navigate(`/blog/${savedBlogId}`);
-  }
+function BlogSaveBtn({ saveFn, isPending, children }) {
+  const isScrollUp = useScrollUp();
 
   return (
-    <Button
-      type="primary"
-      click={saveMutation.isPending ? undefined : saveBlog}
+    <div
+      className={`lg:sticky w-full transition-all ${
+        isScrollUp ? "top-24" : "top-12"
+      }`}
     >
-      {saveMutation.isPending ? (
-        <LoadSpinner />
-      ) : (
-        <>
-          <BiSave /> Save
-        </>
-      )}
-    </Button>
+      <Button disabled={isPending} type="primary" click={saveFn}>
+        {isPending ? "Saving..." : children}
+      </Button>
+    </div>
   );
 }
 

@@ -11,7 +11,6 @@ import { useQuery } from "@tanstack/react-query";
 
 export async function getUser(id) {
   const snapshot = await getDoc(doc(db, "users", id));
-  console.log(id);
 
   if (snapshot.exists()) {
     return { id: snapshot.id, ...snapshot.data() };

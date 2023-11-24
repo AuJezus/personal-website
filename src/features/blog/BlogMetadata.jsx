@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Listbox } from "@headlessui/react";
+import { Timestamp } from "firebase/firestore";
 
 function BlogMetadata({ editor, node, updateAttributes }) {
   return editor.isEditable ? (
@@ -66,7 +67,9 @@ function BlogMetadataEdit({ node, updateAttributes }) {
         <IconContext.Provider value={{ className: "text-violet-500" }}>
           <div className="flex items-center gap-3">
             <BiIcons.BiCalendarHeart />
-            {dayjs(createdAt.toDate()).format("MMM DD, YYYY")}
+            {dayjs(
+              new Timestamp(createdAt.seconds, createdAt.nanoseconds).toDate()
+            ).format("MMM DD, YYYY")}
           </div>
 
           <div className="flex items-center gap-3">
@@ -127,7 +130,9 @@ function BlogMetadataRead({ node }) {
         <IconContext.Provider value={{ className: "text-violet-500" }}>
           <div className="flex items-center gap-3 text-neutral-400">
             <BiIcons.BiCalendarHeart />
-            {dayjs(createdAt.toDate()).format("MMM DD, YYYY")}
+            {dayjs(
+              new Timestamp(createdAt.seconds, createdAt.nanoseconds).toDate()
+            ).format("MMM DD, YYYY")}
           </div>
 
           <Link

@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { db } from "./firebase";
 import snapToArr from "../utils/snapToArr";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 export async function getAllBlogs() {
@@ -146,4 +146,32 @@ export function useBlog(id) {
     error: blogQuery.error,
     blog: blogQuery.data,
   };
+}
+
+export function useBlogMutation(id) {
+  async function createNewBlog(blog) {
+    try {
+      const blogRef = await addDoc(collection(db, "blogs"), blog);
+      return { id: blogRef.id, ...blog };
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async function updateBlog(blog) {
+    try {
+      await updateDoc(doc(db, "blogs", id), blog);
+      return { id, ...blog };
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  const blogMutation = useMutation({
+    mutationFn: id ? updateBlog : createNewBlog,
+  });
+
+  return blogMutation;
 }
