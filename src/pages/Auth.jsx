@@ -3,10 +3,10 @@ import {
   authenticateGithub,
   authenticateGoogle,
   logOut,
-} from "../../services/auth";
-import Button from "../../ui/Button";
+} from "../services/auth";
+import Button from "../ui/Button";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../features/user/AuthContext";
 
 function Auth() {
   const navigate = useNavigate();
@@ -39,10 +39,6 @@ function Auth() {
               click={() => authenticateAndReroute(authenticateGoogle)}
             >
               <BiLogoGoogle /> Google
-            </Button>
-
-            <Button type="primary" click={() => navigate("/notFound")}>
-              <BiLogoGoogle /> Try
             </Button>
           </>
         )}

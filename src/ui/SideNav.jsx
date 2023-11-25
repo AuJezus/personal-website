@@ -1,7 +1,7 @@
 import useScrollUp from "../utils/useScrollUp";
 import { useState } from "react";
-import CategoriesList from "../features/blog/CategoriesList";
 import { BiCategoryAlt, BiX } from "react-icons/bi";
+import CategoriesList from "./CategoriesList";
 
 function SideNav() {
   const isScrollUp = useScrollUp();

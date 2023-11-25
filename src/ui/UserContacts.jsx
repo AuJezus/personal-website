@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { getUser } from "../services/apiUsers";
+import { getUser, useUser } from "../services/apiUsers";
 import { useQuery } from "@tanstack/react-query";
 import Button from "./Button";
 import {
@@ -21,15 +21,11 @@ const contactIcons = {
 };
 
 function UserContacts({ id }) {
-  const {
-    isPending,
-    isError,
-    data: user,
-    error,
-  } = useQuery({
-    queryKey: ["user", id],
-    queryFn: () => getUser(id),
-  });
+  const { isPending, error, user } = useUser(id);
+
+  if (isPending) return <LoadSpinner />;
+
+  if (error) return <p>There was an error: {error}</p>;
 
   return (
     <div className="flex lg:gap-y-4 lg:gap-x-8 lg:mb-0 lg:w-full lg:flex-wrap justify-around lg:justify-center text-4xl text-neutral-300 flex-wrap">

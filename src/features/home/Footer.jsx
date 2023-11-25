@@ -1,4 +1,4 @@
-import ConctactList from "../../ui/ConctactList";
+import ConctactList from "./ConctactList";
 
 function Footer() {
   return (

@@ -1,21 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { getAllCategories } from "../../services/apiCategories";
-import CategoryItem from "../../ui/CategoryItem";
 import * as BiIcons from "react-icons/bi";
-import LoadSpinner from "../../ui/LoadSpinner";
+import LoadSpinner from "./LoadSpinner";
+import CategoryItem from "./CategoryItem";
+import { useCategories } from "../services/apiCategories";
 
 function CategoriesList() {
-  const {
-    isPending,
-    isError,
-    data: categories,
-    error,
-  } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getAllCategories,
-  });
+  const { isPending, error, categories } = useCategories();
 
-  if (isError) return <p>There was an error: {error.message}</p>;
+  if (error) return <p>There was an error: {error.message}</p>;
 
   if (isPending)
     return (

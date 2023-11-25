@@ -1,30 +1,16 @@
 import { BiWrench } from "react-icons/bi";
-
-import Button from "../../ui/Button";
 import { Navigate, useParams } from "react-router-dom";
-import BlogList from "../blog/BlogList";
-import { useQuery } from "@tanstack/react-query";
-import LoadSpinner from "../../ui/LoadSpinner";
-import { getUser } from "../../services/apiUsers";
-import UserContacts from "../../ui/UserContacts";
+import BlogList from "../features/blog/BlogList";
+import LoadSpinner from "../ui/LoadSpinner";
+import UserContacts from "../ui/UserContacts";
+import { useUser } from "../services/apiUsers";
+import Button from "../ui/Button";
 
-function Profile() {
+function User() {
   const { id } = useParams();
-  const {
-    isPending,
-    isError,
-    data: user,
-    error,
-  } = useQuery({
-    queryKey: ["user", id],
-    queryFn: () => getUser(id),
-  });
+  const { isPending, user, error } = useUser(id);
 
-  console.log(user);
-
-  if (user === false) return <Navigate to="/notFound" />;
-
-  if (isError) return <p>There was an error: {error.message}</p>;
+  if (error) return <p>There was an error: {error.message}</p>;
 
   if (isPending)
     return (
@@ -32,6 +18,8 @@ function Profile() {
         <LoadSpinner size="lg" />
       </div>
     );
+
+  if (!user?.displayName) return <Navigate to="/notFound" />;
 
   return (
     <>
@@ -76,4 +64,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default User;

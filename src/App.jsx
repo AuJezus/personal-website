@@ -3,11 +3,8 @@ import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import Auth from "./features/user/Auth";
 import Protected from "./features/user/Protected";
 import { AuthProvider } from "./features/user/AuthContext";
-import Profile from "./features/user/Profile";
-import Settings from "./features/user/Settings";
 import AppLayout from "./pages/AppLayout";
 import Blogs from "./pages/Blogs";
 import BlogsAujezus from "./pages/BlogsAujezus";
@@ -16,6 +13,9 @@ import BlogHow from "./pages/BlogHow";
 import Blog from "./pages/Blog";
 import BlogEdit from "./pages/BlogEdit";
 import BlogNew from "./pages/BlogNew";
+import Auth from "./pages/Auth";
+import User from "./pages/User";
+import UserSettings from "./pages/UserSettings";
 
 const queryClient = new QueryClient();
 
@@ -60,8 +60,15 @@ function App() {
               <Route path="auth" element={<Auth />} />
 
               <Route path="user">
-                <Route path=":id" element={<Profile />} />
-                <Route path="settings" element={<Settings />} />
+                <Route path=":id" element={<User />} />
+                <Route
+                  path="settings"
+                  element={
+                    <Protected>
+                      <UserSettings />
+                    </Protected>
+                  }
+                />
               </Route>
             </Route>
 

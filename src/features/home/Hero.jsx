@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NoiseSvg from "./NoiseSvg";
-import ConctactList from "../../ui/ConctactList";
+import ConctactList from "./ConctactList";
 import { motion } from "framer-motion";
 
 function Hero() {
