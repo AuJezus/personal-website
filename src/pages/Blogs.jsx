@@ -21,7 +21,7 @@ function Blogs() {
           .
         </p>
       </div>
-      <BlogList />
+      <BlogList initialFilter={{}} />
     </div>
   );
 }

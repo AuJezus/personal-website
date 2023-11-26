@@ -35,7 +35,7 @@ function TopNav() {
         {isPending && auth?.uid && <LoadSpinner />}
         {error && auth?.uid && <span>Error loading user: {error.message}</span>}
         {!auth?.uid && (
-          <Button link="/blog/auth" type="primary">
+          <Button link="/auth" type="primary">
             <BiUserPlus />
             Log In
           </Button>

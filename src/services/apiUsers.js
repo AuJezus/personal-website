@@ -15,6 +15,7 @@ export function useUser(id) {
         throw error;
       }
     },
+    enabled: id ? true : false,
   });
 
   return {

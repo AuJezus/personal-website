@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   BiEnvelope,
   BiLogoGithub,
@@ -27,7 +26,6 @@ function UserContacts({ id }) {
   return (
     <div className="flex lg:gap-y-4 lg:gap-x-8 lg:mb-0 lg:w-full lg:flex-wrap justify-around lg:justify-center text-4xl text-neutral-300 flex-wrap">
       {Object.entries(user.contacts).map(([type, value]) => {
-        console.log(value);
         return (
           <a
             className="hover:scale-110 transition-transform"
