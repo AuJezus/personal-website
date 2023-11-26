@@ -3,6 +3,7 @@ import BlogList from "../features/blog/BlogList";
 
 function BlogsCategory() {
   const { category } = useParams();
+
   return (
     <div className="pt-12">
       <div className="mb-8 text-center max-w-3xl mx-auto px-2">

@@ -31,7 +31,7 @@ function ProjectsSection() {
           center: true,
         },
       ],
-      image: "project-images/aujezus-play.png",
+      image: "project-images/aujezus-play.webp",
     },
     {
       name: "forkify",
@@ -47,7 +47,7 @@ function ProjectsSection() {
           center: true,
         },
       ],
-      image: "project-images/forkify.png",
+      image: "project-images/forkify.webp",
     },
     {
       name: "page-text-extractor",
@@ -86,7 +86,7 @@ function ProjectsSection() {
               image={image}
               reverse={i % 2 !== 0}
             />
-          ),
+          )
         )}
       </div>
     </Section>

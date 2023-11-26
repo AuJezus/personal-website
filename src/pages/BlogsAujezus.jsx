@@ -21,7 +21,7 @@ function BlogsAujezus() {
           .
         </p>
       </div>
-      <BlogList filter={{ userId: "UyG428JPa4TUUH73kkDd32jQjGp1" }} />
+      <BlogList initialFilter={{ userId: "UyG428JPa4TUUH73kkDd32jQjGp1" }} />
     </div>
   );
 }

@@ -9,35 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import snapToArr from "../utils/snapToArr";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-
-export async function getAllBlogs() {
-  const snapshot = await getDocs(collection(db, "blogs"));
-  const arr = snapToArr(snapshot);
-  return arr;
-}
-
-export async function getBlog(id) {
-  const snapshot = await getDoc(doc(db, "blogs", id));
-
-  if (snapshot.exists()) {
-    return { id: snapshot.id, ...snapshot.data() };
-  } else {
-    return false;
-  }
-}
-
-export async function createBlog(blog) {
-  const blogRef = await addDoc(collection(db, "blogs"), blog);
-  return { id: blogRef.id, ...blog };
-}
-
-export async function updateBlog(id, blog) {
-  const blogRef = await updateDoc(doc(db, "blogs", id), blog);
-  return { id, ...blog };
-}
 
 export function useBlogs(filter) {
   const blogsQuery = useQuery({

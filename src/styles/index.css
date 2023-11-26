@@ -84,7 +84,7 @@
   .hero-img {
     @apply absolute h-full w-full bg-center opacity-40;
     filter: sepia(100%) hue-rotate(270deg);
-    background-image: url("/hero-back.jpg");
+    background-image: url("/hero-back.webp");
     background-size: 300%;
     animation: pan-image 15s linear infinite;
   }

@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import LoadSpinner from "../../ui/LoadSpinner";
 import { BiCategory } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogListFilter from "./BlogListFilter";
 import { Timestamp } from "firebase/firestore";
 
 function BlogList({ initialFilter = {} }) {
   const [filter, setFilter] = useState(initialFilter);
   const { isPending, error, blogs } = useBlogsWithUserInfo(filter);
+
+  useEffect(() => setFilter(initialFilter), [initialFilter]);
 
   function getFirstParaTextSummary(content) {
     return (

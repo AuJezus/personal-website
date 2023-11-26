@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -72,7 +71,6 @@ function App() {
               </Route>
             </Route>
 
-            <Route path="error" element={<ErrorPage />} />
             <Route path="*" element={<p>Not found</p>} />
           </Routes>
         </BrowserRouter>

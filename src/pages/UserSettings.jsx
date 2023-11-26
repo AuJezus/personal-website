@@ -1,17 +1,10 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../features/user/AuthContext";
-import { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
-import {
-  getUser,
-  updateUser,
-  useUser,
-  useUserMutation,
-} from "../services/apiUsers";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useUser, useUserMutation } from "../services/apiUsers";
 import Button from "../ui/Button";
 import { BiSave } from "react-icons/bi";
-import { uploadFile, useStorageMutation } from "../services/apiStorage";
+import { useStorageMutation } from "../services/apiStorage";
 import LoadSpinner from "../ui/LoadSpinner";
 
 function UserSettings() {

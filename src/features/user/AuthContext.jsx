@@ -15,7 +15,6 @@ function AuthProvider({ children }) {
       setIsPending(false);
     });
 
-    // Clean up the subscription to avoid memory leaks
     return () => unsubscribe();
   }, []);
 

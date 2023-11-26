@@ -10,7 +10,7 @@ function AboutQuote() {
       <p className="w-full text-end text-2xl md:text-3xl">- Marcus Aurelius</p>
       <img
         className=" absolute bottom-0 -z-10 h-full opacity-0 hue-rotate-270 transition-opacity duration-1000 group-hover:opacity-25"
-        src="/marcus-aurelius.png"
+        src="/marcus-aurelius.webp"
         alt="Statue of marcus aurelius"
       />
     </div>

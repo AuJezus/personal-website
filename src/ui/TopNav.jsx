@@ -4,20 +4,13 @@ import Button from "./Button";
 import useScrollUp from "../utils/useScrollUp";
 import { useAuth } from "../features/user/AuthContext";
 import { useUser } from "../services/apiUsers";
+import LoadSpinner from "./LoadSpinner";
 
 function TopNav() {
   const auth = useAuth();
   const isScrollUp = useScrollUp();
 
-  const { isPending, error, user } = useUser(auth.uid);
-
-  if (isPending) {
-    return <span>Loading...</span>;
-  }
-
-  if (error) {
-    return <span>Error: {error.message}</span>;
-  }
+  const { isPending, error, user } = useUser(auth?.uid);
 
   return (
     <nav
@@ -32,14 +25,16 @@ function TopNav() {
       <div className="w-max-32 flex items-center gap-4 rounded-md bg-neutral-800 px-2 py-1 sm:w-80 md:w-96">
         <BiSearchAlt2 />
         <input
-          placeholder="Search"
+          placeholder="This no work man"
           type="text"
           className="w-full bg-neutral-800 outline-none placeholder:text-neutral-500"
         />
       </div>
 
       <div className="flex w-full items-center justify-around md:w-auto md:gap-4 lg:gap-6">
-        {!user && (
+        {isPending && auth?.uid && <LoadSpinner />}
+        {error && auth?.uid && <span>Error loading user: {error.message}</span>}
+        {!auth?.uid && (
           <Button link="/blog/auth" type="primary">
             <BiUserPlus />
             Log In

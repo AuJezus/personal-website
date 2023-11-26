@@ -26,8 +26,8 @@ function CategoriesList() {
           />
         ))}
       </ul>
-      <ul className="mt-20 md:mt-0">
-        <CategoryItem Icon={BiIcons["BiTagAlt"]} name="tags" />
+      <ul className="flex flex-col mt-20 md:mt-0">
+        <CategoryItem Icon={BiIcons.BiHash} name="aujezus" />
       </ul>
     </>
   );

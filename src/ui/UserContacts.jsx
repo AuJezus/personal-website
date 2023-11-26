@@ -1,16 +1,13 @@
-import { Link, useParams } from "react-router-dom";
-import { getUser, useUser } from "../services/apiUsers";
-import { useQuery } from "@tanstack/react-query";
-import Button from "./Button";
+import { Link } from "react-router-dom";
 import {
   BiEnvelope,
   BiLogoGithub,
   BiLogoInstagram,
   BiLogoLinkedin,
   BiLogoTwitter,
-  BiPlus,
 } from "react-icons/bi";
 import LoadSpinner from "./LoadSpinner";
+import { useUser } from "../services/apiUsers";
 
 const contactIcons = {
   github: <BiLogoGithub />,
@@ -30,19 +27,16 @@ function UserContacts({ id }) {
   return (
     <div className="flex lg:gap-y-4 lg:gap-x-8 lg:mb-0 lg:w-full lg:flex-wrap justify-around lg:justify-center text-4xl text-neutral-300 flex-wrap">
       {Object.entries(user.contacts).map(([type, value]) => {
-        if (type === "email") {
-          if (value.public)
-            return (
-              <Link key={type} to={`mailto:${value.address}`}>
-                {contactIcons[type]}
-              </Link>
-            );
-        } else
-          return (
-            <Link key={type} to={value.url}>
-              {contactIcons[type]}
-            </Link>
-          );
+        console.log(value);
+        return (
+          <a
+            className="hover:scale-110 transition-transform"
+            key={type}
+            href={type === "email" ? `mailto:${value.address}` : value}
+          >
+            {contactIcons[type]}
+          </a>
+        );
       })}
     </div>
   );
