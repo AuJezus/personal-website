@@ -4,9 +4,13 @@ import BlogProfile from "../features/blog/BlogProfile";
 import LoadSpinner from "../ui/LoadSpinner";
 import Editor from "../features/blog/Editor";
 import useScrollUp from "../utils/useScrollUp";
+import { useAuth } from "../features/user/AuthContext";
+import Button from "../ui/Button";
+import { BiEdit } from "react-icons/bi";
 
 function Blog() {
   const { id } = useParams();
+  const auth = useAuth();
   const { isPending, error, blog } = useBlog(id);
   const isScrollUp = useScrollUp();
 
@@ -32,6 +36,13 @@ function Blog() {
         }`}
       >
         <BlogProfile userId={blog.userId} />
+        {auth?.uid === blog.userId && (
+          <div className="flex justify-center mt-12">
+            <Button type="primary" link="edit">
+              <BiEdit /> Edit Blog
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,13 +1,16 @@
-import { BiWrench } from "react-icons/bi";
+import { BiBookAdd, BiLogOut, BiWrench } from "react-icons/bi";
 import { Navigate, useParams } from "react-router-dom";
 import BlogList from "../features/blog/BlogList";
 import LoadSpinner from "../ui/LoadSpinner";
 import UserContacts from "../ui/UserContacts";
 import { useUser } from "../services/apiUsers";
 import Button from "../ui/Button";
+import { logOut } from "../services/auth";
+import { useAuth } from "../features/user/AuthContext";
 
 function User() {
   const { id } = useParams();
+  const auth = useAuth();
   const { isPending, user, error } = useUser(id);
 
   if (error) return <p>There was an error: {error.message}</p>;
@@ -48,18 +51,31 @@ function User() {
               <p>
                 <span className="text-neutral-300">12</span> posts
               </p>
-              <Button size="sm" link="settings">
-                <BiWrench /> Settings
-              </Button>
             </div>
           </div>
         </div>
-        <UserContacts id={id} />
+        <div className="flex flex-col items-center gap-4 w-full">
+          <UserContacts id={id} />
+          {auth?.uid === id && (
+            <div className="gap-4 flex">
+              <Button size="sm" type="primary" link="/blog/new">
+                <BiBookAdd /> New Blog
+              </Button>
+              <Button size="sm" link="/user/settings">
+                <BiWrench /> Settings
+              </Button>
+              <Button click={logOut} size="sm">
+                <BiLogOut />
+                Log Out
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="border-t-2 border-violet-500 opacity-20 mb-4"></div>
 
-      <BlogList />
+      <BlogList initialFilter={{ userId: user.id }} />
     </>
   );
 }

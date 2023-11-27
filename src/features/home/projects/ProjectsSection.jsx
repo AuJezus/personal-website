@@ -68,7 +68,7 @@ function ProjectsSection() {
   ];
 
   return (
-    <Section>
+    <Section id="projects">
       <TerminalH2>projects</TerminalH2>
 
       <SectionH3>my creations</SectionH3>

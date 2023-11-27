@@ -42,11 +42,13 @@ function TopNav() {
         )}
         {user && (
           <>
-            <img
-              src={user.photoURL}
-              alt="Profile picture"
-              className="w-8 h-8 rounded-full"
-            />
+            <Link to={`/user/${user.id}`}>
+              <img
+                src={user.photoURL}
+                alt="Profile picture"
+                className="w-8 h-8 rounded-full"
+              />
+            </Link>
             <Button link="/blog/new" type="primary" size="xs">
               <BiBookAdd className="text-lg sm:text-xl" />
               <span className="hidden sm:inline-block">New Blog</span>

@@ -6,9 +6,11 @@ import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useBlogMutation } from "../services/apiBlogs";
 import { useAuth } from "../features/user/AuthContext";
+import { useTagsMutation } from "../services/apiTags";
 
 function BlogNew() {
   const blogMutation = useBlogMutation();
+  const tagsMutation = useTagsMutation();
   const { uid } = useAuth();
 
   const [editor, setEditor] = useState({});
@@ -33,7 +35,9 @@ function BlogNew() {
       title,
     });
 
-    await queryClient.setQueryData(["blog", blog.id], blog);
+    const tagsResult = await tagsMutation.mutateAsync(tags);
+
+    await await queryClient.setQueryData(["blog", blog.id], blog);
     navigate(`/blog/${blog.id}`);
   }
 

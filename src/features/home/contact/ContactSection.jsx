@@ -6,7 +6,7 @@ import Input from "./Input";
 
 function ContactSection() {
   return (
-    <Section last>
+    <Section id="contacts" last>
       <TerminalH2>contacts</TerminalH2>
       <form className="flex flex-col items-center gap-12">
         <h3 className="w-full bg-violet-500 text-center text-5xl text-neutral-900">

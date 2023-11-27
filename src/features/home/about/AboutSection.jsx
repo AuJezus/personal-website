@@ -37,7 +37,7 @@ function AboutSection() {
   ];
 
   return (
-    <Section>
+    <Section id="about">
       <TerminalH2>about-me</TerminalH2>
 
       <SectionH3>my life</SectionH3>

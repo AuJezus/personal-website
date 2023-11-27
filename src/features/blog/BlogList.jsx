@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import BlogListFilter from "./BlogListFilter";
 import { Timestamp } from "firebase/firestore";
 
-function BlogList({ initialFilter = {} }) {
+function BlogList({ initialFilter }) {
   const [filter, setFilter] = useState(initialFilter);
   const { isPending, error, blogs } = useBlogsWithUserInfo(filter);
 

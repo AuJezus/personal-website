@@ -7,7 +7,7 @@ import SectionH3 from "../SectionH3";
 
 function SkillsSection() {
   return (
-    <Section>
+    <Section id="skills">
       <TerminalH2>skills</TerminalH2>
 
       <SectionH3>my wizard wands</SectionH3>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
 import useScrollUp from "../../utils/useScrollUp";
 
@@ -6,23 +6,23 @@ function NavBar() {
   const links = [
     {
       name: "about-me",
-      url: "somelink",
+      url: "#about",
     },
     {
       name: "skills",
-      url: "somelink",
+      url: "#skills",
     },
     {
       name: "projects",
-      url: "somelink",
+      url: "#projects",
     },
     {
       name: "contacts",
-      url: "somelink",
+      url: "#contacts",
     },
     {
       name: "blog",
-      url: "somelink",
+      url: "/blogs/aujezus",
     },
   ];
   const [isOpen, setIsOpen] = useState(false);

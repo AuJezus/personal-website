@@ -1,6 +1,6 @@
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export async function updateTags(tagArr) {
   const tagsCollection = collection(db, "tags");
@@ -43,4 +43,35 @@ export function useTags() {
     error: tagsQuery.error,
     tags: tagsQuery.data,
   };
+}
+
+export function useTagsMutation() {
+  const tagsMutation = useMutation({
+    mutationFn: async (tags) => {
+      try {
+        const tagsCollection = collection(db, "tags");
+        const tagsSnapshot = await getDocs(tagsCollection);
+
+        const existingTags = tagsSnapshot.docs.map((doc) => doc.id);
+        const addedTags = [];
+
+        tags.forEach(async (tag) => {
+          if (!existingTags.includes(tag)) {
+            // If the tag doesn't exist, add it to the collection
+            const tagDocRef = doc(tagsCollection, tag);
+            await setDoc(tagDocRef, {});
+
+            addedTags.push(tag);
+          }
+        });
+
+        return { addedTags, tags };
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+  });
+
+  return tagsMutation;
 }

@@ -5,6 +5,7 @@
 @layer base {
   html {
     @apply font-mono;
+    @apply scroll-smooth;
   }
 
   body {

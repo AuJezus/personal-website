@@ -5,8 +5,7 @@ function Protected({ children }) {
   const location = useLocation();
   const user = useAuth();
 
-  if (!user)
-    return <Navigate to="/blog/auth" state={{ goTo: location.pathname }} />;
+  if (!user) return <Navigate to="/auth" state={{ goTo: location.pathname }} />;
 
   return children;
 }
