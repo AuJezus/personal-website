@@ -1,6 +1,7 @@
 import LoadSpinner from "../../ui/LoadSpinner";
 import UserContacts from "../../ui/UserContacts";
 import { useUser } from "../../services/apiUsers";
+import { Link } from "react-router-dom";
 
 function BlogProfile({ userId }) {
   const { isPending, error, user } = useUser(userId);
@@ -24,9 +25,9 @@ function BlogProfile({ userId }) {
         />
         <div className="hero-overlay hidden lg:block"></div>
       </div>
-      <span>
+      <Link to={`/user/${userId}`}>
         {user === false ? "User was Deleted" : `@${user.displayName}`}
-      </span>
+      </Link>
       <div className="w-full">
         {user !== false && <UserContacts id={userId} />}
       </div>
