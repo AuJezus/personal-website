@@ -47,6 +47,7 @@ function BlogList({ initialFilter }) {
         <div className="grid grid-cols-1 gap-4 lg:gap-8 sm:grid-cols-2 xl:grid-cols-3">
           {blogs.length === 0 && <p>Could not find any posts :(</p>}
           {blogs.map((blog) => {
+            // console.log(blog.user);
             return (
               <div
                 key={blog.id}

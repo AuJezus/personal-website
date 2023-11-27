@@ -69,14 +69,17 @@ export function useBlogsWithUserInfo(filter) {
       const usersCollection = collection(db, "users");
       const usersFirestoreQuery = query(
         usersCollection,
-        where("id", "in", userIdArr)
+        where("__name__", "in", userIdArr)
       );
+
       const usersSnapshot = await getDocs(usersFirestoreQuery);
 
-      const usersData = usersSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      const usersData = usersSnapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
 
       return usersData;
     },
