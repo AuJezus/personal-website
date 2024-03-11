@@ -22,6 +22,14 @@ function Editor({ content, updateFn, editable = false, setEditor }) {
   const storageMutation = useStorageMutation();
   const auth = useAuth();
 
+  async function uploadImage(file) {
+    const fileName = file.name.split(".")[0];
+    const fileExtension = file.name.split(".")[1];
+    const path = `/${auth.uid}/${fileName}-${uniqid()}.${fileExtension}`;
+    const imageURL = await storageMutation.mutateAsync({ path, file });
+    return imageURL;
+  }
+
   const extensions = [
     BlogDocument,
     Title,
@@ -67,15 +75,11 @@ function Editor({ content, updateFn, editable = false, setEditor }) {
         return false;
 
       let file = event.dataTransfer.files[0];
-      const imageTypes = ["image/jpeg", "image/png", "image/gif"];
       // Check if file is an image
-      if (!imageTypes.includes(file.type)) return false;
+      if (file.type.indexOf("image") !== 0) return false;
 
       // Upload image
-      const fileName = file.name.split(".")[0];
-      const fileExtension = file.name.split(".")[1];
-      const path = `/${auth.uid}/${fileName}-${uniqid()}.${fileExtension}`;
-      const imageURL = await storageMutation.mutateAsync({ path, file });
+      const imageURL = await uploadImage(file);
       if (!imageURL) return false;
 
       // Add image to the editor
@@ -89,6 +93,24 @@ function Editor({ content, updateFn, editable = false, setEditor }) {
       view.dispatch(transaction);
 
       return true; // handled
+    },
+    handlePaste: async (view, event, slice) => {
+      const item = (event.clipboardData || event.originalEvent.clipboardData)
+        .items[0];
+
+      if (item.type.indexOf("image") !== 0) return false;
+      event.preventDefault();
+      const file = item.getAsFile();
+      const imageURL = await uploadImage(file);
+      if (!imageURL) return false;
+
+      // Add image to the editor
+      const { schema } = view.state;
+      const node = schema.nodes.image.create({ src: imageURL });
+      const transaction = view.state.tr.replaceSelectionWith(node);
+      view.dispatch(transaction);
+
+      return true;
     },
   };
 
